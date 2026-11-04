@@ -1,0 +1,960 @@
+### english
+The tokenizer turns text into numbers. A model never sees letters, it sees token ids. Frequent pairs of bytes merge into single tokens, so common words cost fewer tokens than rare words. The same sentence, tokenized two different ways, can cost twice as much to run. Token counts decide context length, price, and speed. Learning how a tokenizer is trained is learning where those costs come from.
+Byte pair encoding starts with bytes. Every character in every script becomes one or more bytes, and those bytes are the first vocabulary. The training loop counts pairs, merges the most frequent pair, and counts again. After a hundred merges the common endings of words become single tokens. After a thousand merges whole syllables and short words become single tokens. Nothing in the loop understands language. It only follows frequency, and frequency alone shapes the vocabulary.
+A production tokenizer adds steps that a teaching tokenizer leaves out. Text is normalized, split into pieces by a pattern, and only then merged. Numbers are often split digit by digit so that arithmetic stays regular. Spaces attach to the word that follows them, which is why so many tokens begin with a space. Special tokens are reserved for padding, for the start of a sequence, for the end of a sequence, and for masking. Those tokens are never learned from data. They are assigned by hand and protected from merging.
+Compression is the first test of a tokenizer. Take a fixed text, count its bytes, count its tokens, and divide. A ratio near one means the tokenizer found almost nothing to merge. A ratio near four means frequent text became cheap. The ratio depends on the language, the domain, and the match between the training corpus and the test text. Code compresses in its own way because keywords, brackets, and indentation repeat in strict patterns. Prose compresses through common words and common endings. A script written with three bytes per character starts with a handicap that merges must repay.
+Evaluation keeps a tokenizer honest. A tokenizer that compresses English well may split another language into single bytes, and every split raises the cost of that language and shortens its effective context window. Fair comparison needs the same text in each language, the same merge count, and a report per language, not one blended average that hides the gap. The numbers in this lab come from a synthetic corpus written for teaching. They show the method and the counting. They are not a ranking of production tokenizers.
+Training data decides the vocabulary before a single merge runs. If the corpus holds mostly news prose, the merges will serve news prose. If the corpus holds code, the merges will spend themselves on brackets, keywords, and common identifier pieces. A mixed corpus forces a trade: each merge given to one segment is a merge denied to another. Watching which segment wins the early merges is a simple way to see what the corpus values. That is why this level trains on English, Bangla, and code together and reports each segment on its own line.
+Context windows are budgets. A document that costs four thousand tokens in one tokenizer may cost six thousand in another, and the difference decides whether it fits, what it costs, and how fast the answer returns. Tokenizer choice is therefore an engineering decision with a price attached, not a detail to leave to default settings. Measuring that price on your own text, in your own languages, is the practical skill this lab is built to teach.
+Determinism matters when numbers are published. If two runs of the same training code on the same corpus give different merges, the published table cannot be trusted. This lab breaks every tie on the smallest pair, sorts nothing by accident, and uses no randomness in training or in corpus construction. The same command on the same files gives the same counts, and a reader can check every number in the report by running the code.
+The common token counts the byte in the, and the frequent language splits again.
+When the token counts common text, the byte splits at the same frequent rate.
+The small model tests the number in document, and the whole result gives again.
+The plain data takes the method in the, and the regular program decides again.
+The costly text costs the reader in library, and the fast speed checks again.
+When the text costs costly text, the reader checks at the same fast rate.
+The simple word decides the variable in the, and the plain output stops again.
+The honest byte learns the script in lab, and the rare token tests again.
+The whole pair shows the pattern in the, and the early pattern turns again.
+When the pair shows whole text, the pattern turns at the same early rate.
+The common corpus moves the table in file, and the honest reader reads again.
+The small script watches the student in the, and the slow byte makes again.
+The plain language reads the token in market, and the exact code proves again.
+When the language reads plain text, the token proves at the same exact rate.
+The costly sentence builds the context in the, and the small machine shows again.
+The simple context keeps the train in report, and the late sentence starts again.
+The honest window stops the output in the, and the fixed report measures again.
+When the window stops honest text, the output measures at the same fixed rate.
+The whole price merges the network in school, and the simple function costs again.
+The common speed measures the text in the, and the cheap cost writes again.
+The small cost gives the speed in corpus, and the large sequence keeps again.
+When the cost gives small text, the speed keeps at the same large rate.
+The plain number fits the file in the, and the common model counts again.
+The costly letter proves the question in system, and the single merge finds again.
+The simple symbol trains the program in the, and the strict writer watches again.
+When the symbol trains simple text, the program watches at the same strict rate.
+The honest pattern finds the pair in station, and the costly pair reports again.
+The whole merge turns the letter in the, and the mixed file fits again.
+The common count follows the result in table, and the frequent network learns again.
+When the count follows common text, the result learns at the same frequent rate.
+The small train writes the writer in the, and the whole context holds again.
+The plain test checks the string in office, and the regular table merges again.
+The costly code holds the language in the, and the fast variable takes again.
+When the code holds costly text, the language takes at the same fast rate.
+The simple file starts the merge in document, and the plain number follows again.
+The honest system splits the value in the, and the rare document builds again.
+The whole method reports the engine in library, and the early data runs again.
+When the method reports whole text, the engine runs at the same early rate.
+The common result makes the model in the, and the honest count trains again.
+The small report runs the window in lab, and the slow teacher moves again.
+The plain table counts the test in the, and the exact corpus splits again.
+When the table counts plain text, the test splits at the same exact rate.
+The costly value tests the sequence in file, and the small system gives again.
+The simple input takes the server in the, and the late server decides again.
+The honest output costs the word in market, and the fixed window checks again.
+When the output costs honest text, the word checks at the same fixed rate.
+The whole sequence decides the cost in the, and the simple value stops again.
+The common document learns the system in report, and the cheap string tests again.
+The small question shows the answer in the, and the large letter turns again.
+When the question shows small text, the answer turns at the same large rate.
+The plain answer moves the function in school, and the common question reads again.
+The costly reader watches the corpus in the, and the single text makes again.
+The simple writer reads the symbol in corpus, and the strict train proves again.
+When the writer reads simple text, the symbol proves at the same strict rate.
+The honest teacher builds the report in the, and the costly student shows again.
+The whole student keeps the teacher in system, and the mixed script starts again.
+The common engine stops the list in the, and the frequent method measures again.
+When the engine stops common text, the list measures at the same frequent rate.
+The small machine merges the sentence in station, and the whole client costs again.
+The plain network measures the count in the, and the regular price writes again.
+The costly server gives the input in table, and the fast input keeps again.
+When the server gives costly text, the input keeps at the same fast rate.
+The simple client fits the machine in the, and the plain list counts again.
+The honest program proves the data in office, and the rare symbol finds again.
+The whole function trains the price in the, and the early answer watches again.
+When the function trains whole text, the price watches at the same early rate.
+The common variable finds the code in document, and the honest word reports again.
+The small string turns the document in the, and the slow test fits again.
+The plain list follows the client in library, and the exact engine learns again.
+When the list follows plain text, the client learns at the same exact rate.
+The costly token writes the byte in the, and the small language holds again.
+The simple model checks the number in lab, and the late result merges again.
+The honest data holds the method in the, and the fixed program takes again.
+When the data holds honest text, the method takes at the same fixed rate.
+The whole text starts the reader in file, and the simple speed follows again.
+The common word splits the variable in the, and the cheap output builds again.
+The small byte reports the script in market, and the large token runs again.
+When the byte reports small text, the script runs at the same large rate.
+The plain pair makes the pattern in the, and the common pattern trains again.
+The costly corpus runs the table in report, and the single reader moves again.
+The simple script counts the student in the, and the strict byte splits again.
+When the script counts simple text, the student splits at the same strict rate.
+The honest language tests the token in school, and the costly code gives again.
+The whole sentence takes the context in the, and the mixed machine decides again.
+The common context costs the train in corpus, and the frequent sentence checks again.
+When the context costs common text, the train checks at the same frequent rate.
+The small window decides the output in the, and the whole report stops again.
+The plain price learns the network in system, and the regular function tests again.
+The costly speed shows the text in the, and the fast cost turns again.
+When the speed shows costly text, the text turns at the same fast rate.
+The simple cost moves the speed in station, and the plain sequence reads again.
+The honest number watches the file in the, and the rare model makes again.
+The whole letter reads the question in table, and the early merge proves again.
+When the letter reads whole text, the question proves at the same early rate.
+The common symbol builds the program in the, and the honest writer shows again.
+The small pattern keeps the pair in office, and the slow pair starts again.
+The plain merge stops the letter in the, and the exact file measures again.
+When the merge stops plain text, the letter measures at the same exact rate.
+The costly count merges the result in document, and the small network costs again.
+The simple train measures the writer in the, and the late context writes again.
+The honest test gives the string in library, and the fixed table keeps again.
+When the test gives honest text, the string keeps at the same fixed rate.
+The whole code fits the language in the, and the simple variable counts again.
+The common file proves the merge in lab, and the cheap number finds again.
+The small system trains the value in the, and the large document watches again.
+When the system trains small text, the value watches at the same large rate.
+The plain method finds the engine in file, and the common data reports again.
+The costly result turns the model in the, and the single count fits again.
+The simple report follows the window in market, and the strict teacher learns again.
+When the report follows simple text, the window learns at the same strict rate.
+The honest table writes the test in the, and the costly corpus holds again.
+The whole value checks the sequence in report, and the mixed system merges again.
+The common input holds the server in the, and the frequent server takes again.
+When the input holds common text, the server takes at the same frequent rate.
+The small output starts the word in school, and the whole window follows again.
+The plain sequence splits the cost in the, and the regular value builds again.
+The costly document reports the system in corpus, and the fast string runs again.
+When the document reports costly text, the system runs at the same fast rate.
+The simple question makes the answer in the, and the plain letter trains again.
+The honest answer runs the function in system, and the rare question moves again.
+The whole reader counts the corpus in the, and the early text splits again.
+When the reader counts whole text, the corpus splits at the same early rate.
+The common writer tests the symbol in station, and the honest train gives again.
+The small teacher takes the report in the, and the slow student decides again.
+The plain student costs the teacher in table, and the exact script checks again.
+When the student costs plain text, the teacher checks at the same exact rate.
+The costly engine decides the list in the, and the small method stops again.
+The simple machine learns the sentence in office, and the late client tests again.
+The honest network shows the count in the, and the fixed price turns again.
+When the network shows honest text, the count turns at the same fixed rate.
+The whole server moves the input in document, and the simple input reads again.
+The common client watches the machine in the, and the cheap list makes again.
+The small program reads the data in library, and the large symbol proves again.
+When the program reads small text, the data proves at the same large rate.
+The plain function builds the price in the, and the common answer shows again.
+The costly variable keeps the code in lab, and the single word starts again.
+The simple string stops the document in the, and the strict test measures again.
+When the string stops simple text, the document measures at the same strict rate.
+The honest list merges the client in file, and the costly engine costs again.
+The whole token measures the byte in the, and the mixed language writes again.
+The common model gives the number in market, and the frequent result keeps again.
+When the model gives common text, the number keeps at the same frequent rate.
+The small data fits the method in the, and the whole program counts again.
+The plain text proves the reader in report, and the regular speed finds again.
+The costly word trains the variable in the, and the fast output watches again.
+When the word trains costly text, the variable watches at the same fast rate.
+The simple byte finds the script in school, and the plain token reports again.
+The honest pair turns the pattern in the, and the rare pattern fits again.
+The whole corpus follows the table in corpus, and the early reader learns again.
+When the corpus follows whole text, the table learns at the same early rate.
+The common script writes the student in the, and the honest byte holds again.
+The small language checks the token in system, and the slow code merges again.
+The plain sentence holds the context in the, and the exact machine takes again.
+When the sentence holds plain text, the context takes at the same exact rate.
+The costly context starts the train in station, and the small sentence follows again.
+The simple window splits the output in the, and the late report builds again.
+The honest price reports the network in table, and the fixed function runs again.
+When the price reports honest text, the network runs at the same fixed rate.
+The whole speed makes the text in the, and the simple cost trains again.
+The common cost runs the speed in office, and the cheap sequence moves again.
+The small number counts the file in the, and the large model splits again.
+When the number counts small text, the file splits at the same large rate.
+The plain letter tests the question in document, and the common merge gives again.
+The costly symbol takes the program in the, and the single writer decides again.
+The simple pattern costs the pair in library, and the strict pair checks again.
+When the pattern costs simple text, the pair checks at the same strict rate.
+The honest merge decides the letter in the, and the costly file stops again.
+The whole count learns the result in lab, and the mixed network tests again.
+The common train shows the writer in the, and the frequent context turns again.
+When the train shows common text, the writer turns at the same frequent rate.
+The small test moves the string in file, and the whole table reads again.
+The plain code watches the language in the, and the regular variable makes again.
+The costly file reads the merge in market, and the fast number proves again.
+When the file reads costly text, the merge proves at the same fast rate.
+The simple system builds the value in the, and the plain document shows again.
+The honest method keeps the engine in report, and the rare data starts again.
+The whole result stops the model in the, and the early count measures again.
+When the result stops whole text, the model measures at the same early rate.
+The common report merges the window in school, and the honest teacher costs again.
+The small table measures the test in the, and the slow corpus writes again.
+The plain value gives the sequence in corpus, and the exact system keeps again.
+When the value gives plain text, the sequence keeps at the same exact rate.
+The costly input fits the server in the, and the small server counts again.
+The simple output proves the word in system, and the late window finds again.
+The honest sequence trains the cost in the, and the fixed value watches again.
+When the sequence trains honest text, the cost watches at the same fixed rate.
+The whole document finds the system in station, and the simple string reports again.
+The common question turns the answer in the, and the cheap letter fits again.
+The small answer follows the function in table, and the large question learns again.
+When the answer follows small text, the function learns at the same large rate.
+The plain reader writes the corpus in the, and the common text holds again.
+The costly writer checks the symbol in office, and the single train merges again.
+The simple teacher holds the report in the, and the strict student takes again.
+When the teacher holds simple text, the report takes at the same strict rate.
+The honest student starts the teacher in document, and the costly script follows again.
+The whole engine splits the list in the, and the mixed method builds again.
+The common machine reports the sentence in library, and the frequent client runs again.
+When the machine reports common text, the sentence runs at the same frequent rate.
+The small network makes the count in the, and the whole price trains again.
+The plain server runs the input in lab, and the regular input moves again.
+The costly client counts the machine in the, and the fast list splits again.
+When the client counts costly text, the machine splits at the same fast rate.
+The simple program tests the data in file, and the plain symbol gives again.
+The honest function takes the price in the, and the rare answer decides again.
+The whole variable costs the code in market, and the early word checks again.
+When the variable costs whole text, the code checks at the same early rate.
+The common string decides the document in the, and the honest test stops again.
+The small list learns the client in report, and the slow engine tests again.
+The plain token shows the byte in the, and the exact language turns again.
+When the token shows plain text, the byte turns at the same exact rate.
+The costly model moves the number in school, and the small result reads again.
+The simple data watches the method in the, and the late program makes again.
+The honest text reads the reader in corpus, and the fixed speed proves again.
+When the text reads honest text, the reader proves at the same fixed rate.
+The whole word builds the variable in the, and the simple output shows again.
+The common byte keeps the script in system, and the cheap token starts again.
+The small pair stops the pattern in the, and the large pattern measures again.
+When the pair stops small text, the pattern measures at the same large rate.
+The plain corpus merges the table in station, and the common reader costs again.
+The costly script measures the student in the, and the single byte writes again.
+The simple language gives the token in table, and the strict code keeps again.
+When the language gives simple text, the token keeps at the same strict rate.
+The honest sentence fits the context in the, and the costly machine counts again.
+The whole context proves the train in office, and the mixed sentence finds again.
+The common window trains the output in the, and the frequent report watches again.
+When the window trains common text, the output watches at the same frequent rate.
+The small price finds the network in document, and the whole function reports again.
+### bangla
+ঢাকা বাংলাদেশের রাজধানী। বাংলা একটি সুন্দর ভাষা। আমি প্রতিদিন বাংলা পড়ি এবং লিখি। আমার বন্ধু ঢাকায় থাকে। সে প্রতিদিন সকালে হাঁটে এবং বই পড়ে। বাংলা ভাষায় অনেক ভালো বই আছে। আমরা বাংলা শিখি, বাংলা বলি, বাংলায় স্বপ্ন দেখি।
+টোকেনাইজার লেখাকে সংখ্যায় বদলে দেয়। বাংলা লেখা ইউটিএফ আট বাইটে অনেক লম্বা হয়, তাই একটি বাংলা অক্ষর কয়েকটি বাইট নেয়। ঘন ঘন আসা বাইট জোড়া আগে মিলে যায়। যে শব্দ বেশি আসে, সেই শব্দ আগে এক টোকেন হয়ে যায়। এই কারণে একই লেখা দুই টোকেনাইজারে দুই রকম দাম নেয়।
+আমার গ্রামের নাম ছোট, কিন্তু সেখানকার মানুষ খুব বড় মনের। গ্রামে একটি পুরোনো স্কুল আছে, একটি বড় পুকুর আছে, আর মাঠের পাশে একটি বটগাছ আছে। ছেলেমেয়েরা প্রতিদিন স্কুলে যায়, খেলা করে, গল্প শোনে। বর্ষায় মাঠে পানি জমে, শীতে সকালে কুয়াশা পড়ে। গ্রামের জীবন সহজ, কিন্তু সেই জীবনে অনেক শিক্ষা লুকিয়ে আছে।
+বিজ্ঞান আমাদের চারপাশের জগৎ বুঝতে সাহায্য করে। গাছ আলো থেকে খাবার তৈরি করে। পানি গরম হলে বাষ্প হয়, ঠান্ডা হলে বরফ হয়। পৃথিবী সূর্যের চারদিকে ঘোরে, আর চাঁদ ঘোরে পৃথিবীর চারদিকে। প্রতিটি ঘটনার পেছনে একটি কারণ থাকে। সেই কারণ খুঁজে বের করাই বিজ্ঞানের কাজ। ভালো প্রশ্ন করা ভালো উত্তর পাওয়ার প্রথম ধাপ।
+বই পড়া একটি ভালো অভ্যাস। বই আমাদের নতুন কথা শেখায়, নতুন জগতের সঙ্গে পরিচয় করিয়ে দেয়। প্রতিদিন অল্প অল্প করে পড়লে বড় বইও শেষ হয়ে যায়। গল্পের বই মনকে আনন্দ দেয়, ইতিহাসের বই অতীতকে জানায়, আর বিজ্ঞানের বই প্রশ্ন করতে শেখায়। পড়ার অভ্যাস গড়তে হলে প্রথমে ছোট বই দিয়ে শুরু করা ভালো।
+ঢাকা শহরে অনেক মানুষ থাকে। এই শহরে বড় বড় রাস্তা, অনেক বাজার, অনেক স্কুল আর হাসপাতাল আছে। সকালে রাস্তায় গাড়ির ভিড় থাকে, সন্ধ্যায় বাজারে মানুষের ভিড় থাকে। শহরের জীবন ব্যস্ত, তবু এই শহরে মানুষ স্বপ্ন দেখে, কাজ করে, আর পরিবারের জন্য পরিশ্রম করে।
+কম্পিউটার আজকাল প্রতিটি কাজে লাগে। লেখা লেখা, হিসাব করা, ছবি আঁকা, গান শোনা, সব কাজেই কম্পিউটার সাহায্য করে। প্রোগ্রাম হলো কম্পিউটারকে দেওয়া ধাপে ধাপে নির্দেশ। ভুল নির্দেশ দিলে কম্পিউটার ভুল ফল দেয়। তাই প্রোগ্রাম লেখার সময় মনোযোগ দরকার, আর প্রতিটি ধাপ পরীক্ষা করা দরকার।
+আমি প্রতিদিন ঢাকায় বই পড়ে এবং কবিতা লেখে।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে পড়ে।
+আমরা মাঝে গ্রামে ছবি দেখে এবং গল্প শেখে।
+সে মন স্কুলে বই ভাবে এবং বই দেখে।
+তারা সকালে বাড়িতে ছবি পায় এবং উত্তর শোনে।
+শিক্ষক আজকাল বাজারে বই আসে এবং প্রশ্ন বলে।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে আসে।
+ছাত্র দিয়ে মাঠে ছবি করে এবং সংখ্যা ভাবে।
+বন্ধু বিকালে নদীর বই শেখে এবং ভাষা জানে।
+ভাই সবসময় পাশে ছবি বলে এবং খবর চায়।
+বোন যত্ন শহরে বই চায় এবং চিঠি পায়।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে চায়।
+মা রাতে লাইব্রেরিতে ছবি নেয় এবং ছবি দেয়।
+বাবা ধীরে ঢাকায় বই থাকে এবং পড়া নেয়।
+কৃষক করে গ্রামে ছবি লেখে এবং কাজ আসে।
+জেলে মাঝে স্কুলে বই শোনে এবং কথা যায়।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে শোনে।
+ডাক্তার ধীরে বাড়িতে ছবি জানে এবং গান থাকে।
+লেখক প্রতিদিন বাজারে বই দেয় এবং কবিতা করে।
+রফিক মাঝে মাঠে ছবি যায় এবং গল্প পড়ে।
+করিম মন নদীর বই পড়ে এবং বই লেখে।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে পড়ে।
+সুমন সকালে পাশে ছবি দেখে এবং উত্তর শেখে।
+নীলা আজকাল শহরে বই ভাবে এবং প্রশ্ন দেখে।
+আরিফ দিয়ে লাইব্রেরিতে ছবি পায় এবং সংখ্যা শোনে।
+আমি বিকালে ঢাকায় বই আসে এবং ভাষা বলে।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে আসে।
+আমরা সবসময় গ্রামে ছবি করে এবং খবর ভাবে।
+সে যত্ন স্কুলে বই শেখে এবং চিঠি জানে।
+তারা রাতে বাড়িতে ছবি বলে এবং ছবি চায়।
+শিক্ষক ধীরে বাজারে বই চায় এবং পড়া পায়।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে চায়।
+ছাত্র করে মাঠে ছবি নেয় এবং কাজ দেয়।
+বন্ধু মাঝে নদীর বই থাকে এবং কথা নেয়।
+ভাই ধীরে পাশে ছবি লেখে এবং গান আসে।
+বোন প্রতিদিন শহরে বই শোনে এবং কবিতা যায়।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে শোনে।
+মা মাঝে লাইব্রেরিতে ছবি জানে এবং গল্প থাকে।
+বাবা মন ঢাকায় বই দেয় এবং বই করে।
+কৃষক সকালে গ্রামে ছবি যায় এবং উত্তর পড়ে।
+জেলে আজকাল স্কুলে বই পড়ে এবং প্রশ্ন লেখে।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে পড়ে।
+ডাক্তার দিয়ে বাড়িতে ছবি দেখে এবং সংখ্যা শেখে।
+লেখক বিকালে বাজারে বই ভাবে এবং ভাষা দেখে।
+রফিক সবসময় মাঠে ছবি পায় এবং খবর শোনে।
+করিম যত্ন নদীর বই আসে এবং চিঠি বলে।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে আসে।
+সুমন রাতে পাশে ছবি করে এবং ছবি ভাবে।
+নীলা ধীরে শহরে বই শেখে এবং পড়া জানে।
+আরিফ করে লাইব্রেরিতে ছবি বলে এবং কাজ চায়।
+আমি মাঝে ঢাকায় বই চায় এবং কথা পায়।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে চায়।
+আমরা ধীরে গ্রামে ছবি নেয় এবং গান দেয়।
+সে প্রতিদিন স্কুলে বই থাকে এবং কবিতা নেয়।
+তারা মাঝে বাড়িতে ছবি লেখে এবং গল্প আসে।
+শিক্ষক মন বাজারে বই শোনে এবং বই যায়।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে শোনে।
+ছাত্র সকালে মাঠে ছবি জানে এবং উত্তর থাকে।
+বন্ধু আজকাল নদীর বই দেয় এবং প্রশ্ন করে।
+ভাই দিয়ে পাশে ছবি যায় এবং সংখ্যা পড়ে।
+বোন বিকালে শহরে বই পড়ে এবং ভাষা লেখে।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে পড়ে।
+মা সবসময় লাইব্রেরিতে ছবি দেখে এবং খবর শেখে।
+বাবা যত্ন ঢাকায় বই ভাবে এবং চিঠি দেখে।
+কৃষক রাতে গ্রামে ছবি পায় এবং ছবি শোনে।
+জেলে ধীরে স্কুলে বই আসে এবং পড়া বলে।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে আসে।
+ডাক্তার করে বাড়িতে ছবি করে এবং কাজ ভাবে।
+লেখক মাঝে বাজারে বই শেখে এবং কথা জানে।
+রফিক ধীরে মাঠে ছবি বলে এবং গান চায়।
+করিম প্রতিদিন নদীর বই চায় এবং কবিতা পায়।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে চায়।
+সুমন মাঝে পাশে ছবি নেয় এবং গল্প দেয়।
+নীলা মন শহরে বই থাকে এবং বই নেয়।
+আরিফ সকালে লাইব্রেরিতে ছবি লেখে এবং উত্তর আসে।
+আমি আজকাল ঢাকায় বই শোনে এবং প্রশ্ন যায়।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে শোনে।
+আমরা দিয়ে গ্রামে ছবি জানে এবং সংখ্যা থাকে।
+সে বিকালে স্কুলে বই দেয় এবং ভাষা করে।
+তারা সবসময় বাড়িতে ছবি যায় এবং খবর পড়ে।
+শিক্ষক যত্ন বাজারে বই পড়ে এবং চিঠি লেখে।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে পড়ে।
+ছাত্র রাতে মাঠে ছবি দেখে এবং ছবি শেখে।
+বন্ধু ধীরে নদীর বই ভাবে এবং পড়া দেখে।
+ভাই করে পাশে ছবি পায় এবং কাজ শোনে।
+বোন মাঝে শহরে বই আসে এবং কথা বলে।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে আসে।
+মা ধীরে লাইব্রেরিতে ছবি করে এবং গান ভাবে।
+বাবা প্রতিদিন ঢাকায় বই শেখে এবং কবিতা জানে।
+কৃষক মাঝে গ্রামে ছবি বলে এবং গল্প চায়।
+জেলে মন স্কুলে বই চায় এবং বই পায়।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে চায়।
+ডাক্তার সকালে বাড়িতে ছবি নেয় এবং উত্তর দেয়।
+লেখক আজকাল বাজারে বই থাকে এবং প্রশ্ন নেয়।
+রফিক দিয়ে মাঠে ছবি লেখে এবং সংখ্যা আসে।
+করিম বিকালে নদীর বই শোনে এবং ভাষা যায়।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে শোনে।
+সুমন সবসময় পাশে ছবি জানে এবং খবর থাকে।
+নীলা যত্ন শহরে বই দেয় এবং চিঠি করে।
+আরিফ রাতে লাইব্রেরিতে ছবি যায় এবং ছবি পড়ে।
+আমি ধীরে ঢাকায় বই পড়ে এবং পড়া লেখে।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে পড়ে।
+আমরা করে গ্রামে ছবি দেখে এবং কাজ শেখে।
+সে মাঝে স্কুলে বই ভাবে এবং কথা দেখে।
+তারা ধীরে বাড়িতে ছবি পায় এবং গান শোনে।
+শিক্ষক প্রতিদিন বাজারে বই আসে এবং কবিতা বলে।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে আসে।
+ছাত্র মাঝে মাঠে ছবি করে এবং গল্প ভাবে।
+বন্ধু মন নদীর বই শেখে এবং বই জানে।
+ভাই সকালে পাশে ছবি বলে এবং উত্তর চায়।
+বোন আজকাল শহরে বই চায় এবং প্রশ্ন পায়।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে চায়।
+মা দিয়ে লাইব্রেরিতে ছবি নেয় এবং সংখ্যা দেয়।
+বাবা বিকালে ঢাকায় বই থাকে এবং ভাষা নেয়।
+কৃষক সবসময় গ্রামে ছবি লেখে এবং খবর আসে।
+জেলে যত্ন স্কুলে বই শোনে এবং চিঠি যায়।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে শোনে।
+ডাক্তার রাতে বাড়িতে ছবি জানে এবং ছবি থাকে।
+লেখক ধীরে বাজারে বই দেয় এবং পড়া করে।
+রফিক করে মাঠে ছবি যায় এবং কাজ পড়ে।
+করিম মাঝে নদীর বই পড়ে এবং কথা লেখে।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে পড়ে।
+সুমন ধীরে পাশে ছবি দেখে এবং গান শেখে।
+নীলা প্রতিদিন শহরে বই ভাবে এবং কবিতা দেখে।
+আরিফ মাঝে লাইব্রেরিতে ছবি পায় এবং গল্প শোনে।
+আমি মন ঢাকায় বই আসে এবং বই বলে।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে আসে।
+আমরা সকালে গ্রামে ছবি করে এবং উত্তর ভাবে।
+সে আজকাল স্কুলে বই শেখে এবং প্রশ্ন জানে।
+তারা দিয়ে বাড়িতে ছবি বলে এবং সংখ্যা চায়।
+শিক্ষক বিকালে বাজারে বই চায় এবং ভাষা পায়।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে চায়।
+ছাত্র সবসময় মাঠে ছবি নেয় এবং খবর দেয়।
+বন্ধু যত্ন নদীর বই থাকে এবং চিঠি নেয়।
+ভাই রাতে পাশে ছবি লেখে এবং ছবি আসে।
+বোন ধীরে শহরে বই শোনে এবং পড়া যায়।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে শোনে।
+মা করে লাইব্রেরিতে ছবি জানে এবং কাজ থাকে।
+বাবা মাঝে ঢাকায় বই দেয় এবং কথা করে।
+কৃষক ধীরে গ্রামে ছবি যায় এবং গান পড়ে।
+জেলে প্রতিদিন স্কুলে বই পড়ে এবং কবিতা লেখে।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে পড়ে।
+ডাক্তার মাঝে বাড়িতে ছবি দেখে এবং গল্প শেখে।
+লেখক মন বাজারে বই ভাবে এবং বই দেখে।
+রফিক সকালে মাঠে ছবি পায় এবং উত্তর শোনে।
+করিম আজকাল নদীর বই আসে এবং প্রশ্ন বলে।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে আসে।
+সুমন দিয়ে পাশে ছবি করে এবং সংখ্যা ভাবে।
+নীলা বিকালে শহরে বই শেখে এবং ভাষা জানে।
+আরিফ সবসময় লাইব্রেরিতে ছবি বলে এবং খবর চায়।
+আমি যত্ন ঢাকায় বই চায় এবং চিঠি পায়।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে চায়।
+আমরা রাতে গ্রামে ছবি নেয় এবং ছবি দেয়।
+সে ধীরে স্কুলে বই থাকে এবং পড়া নেয়।
+তারা করে বাড়িতে ছবি লেখে এবং কাজ আসে।
+শিক্ষক মাঝে বাজারে বই শোনে এবং কথা যায়।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে শোনে।
+ছাত্র ধীরে মাঠে ছবি জানে এবং গান থাকে।
+বন্ধু প্রতিদিন নদীর বই দেয় এবং কবিতা করে।
+ভাই মাঝে পাশে ছবি যায় এবং গল্প পড়ে।
+বোন মন শহরে বই পড়ে এবং বই লেখে।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে পড়ে।
+মা সকালে লাইব্রেরিতে ছবি দেখে এবং উত্তর শেখে।
+বাবা আজকাল ঢাকায় বই ভাবে এবং প্রশ্ন দেখে।
+কৃষক দিয়ে গ্রামে ছবি পায় এবং সংখ্যা শোনে।
+জেলে বিকালে স্কুলে বই আসে এবং ভাষা বলে।
+স্কুলে থাকা জেলে প্রতিদিন বই নিয়ে আসে।
+ডাক্তার সবসময় বাড়িতে ছবি করে এবং খবর ভাবে।
+লেখক যত্ন বাজারে বই শেখে এবং চিঠি জানে।
+রফিক রাতে মাঠে ছবি বলে এবং ছবি চায়।
+করিম ধীরে নদীর বই চায় এবং পড়া পায়।
+নদীর থাকা করিম প্রতিদিন বই নিয়ে চায়।
+সুমন করে পাশে ছবি নেয় এবং কাজ দেয়।
+নীলা মাঝে শহরে বই থাকে এবং কথা নেয়।
+আরিফ ধীরে লাইব্রেরিতে ছবি লেখে এবং গান আসে।
+আমি প্রতিদিন ঢাকায় বই শোনে এবং কবিতা যায়।
+ঢাকায় থাকা আমি প্রতিদিন বই নিয়ে শোনে।
+আমরা মাঝে গ্রামে ছবি জানে এবং গল্প থাকে।
+সে মন স্কুলে বই দেয় এবং বই করে।
+তারা সকালে বাড়িতে ছবি যায় এবং উত্তর পড়ে।
+শিক্ষক আজকাল বাজারে বই পড়ে এবং প্রশ্ন লেখে।
+বাজারে থাকা শিক্ষক প্রতিদিন বই নিয়ে পড়ে।
+ছাত্র দিয়ে মাঠে ছবি দেখে এবং সংখ্যা শেখে।
+বন্ধু বিকালে নদীর বই ভাবে এবং ভাষা দেখে।
+ভাই সবসময় পাশে ছবি পায় এবং খবর শোনে।
+বোন যত্ন শহরে বই আসে এবং চিঠি বলে।
+শহরে থাকা বোন প্রতিদিন বই নিয়ে আসে।
+মা রাতে লাইব্রেরিতে ছবি করে এবং ছবি ভাবে।
+### code
+def tokenize(text):
+    return list(text.encode("utf-8"))
+
+def count_pairs(ids):
+    counts = {}
+    for pair in zip(ids, ids[1:]):
+        counts[pair] = counts.get(pair, 0) + 1
+    return counts
+
+def merge(ids, pair, new_id):
+    out = []
+    index = 0
+    while index < len(ids):
+        if index < len(ids) - 1 and ids[index] == pair[0] and ids[index + 1] == pair[1]:
+            out.append(new_id)
+            index += 2
+        else:
+            out.append(ids[index])
+            index += 1
+    return out
+
+class Tokenizer:
+    def __init__(self, merges, vocab):
+        self.merges = merges
+        self.vocab = vocab
+
+    def encode(self, text):
+        ids = list(text.encode("utf-8"))
+        for pair, new_id in self.merges.items():
+            ids = merge(ids, pair, new_id)
+        return ids
+
+    def decode(self, ids):
+        data = b"".join(self.vocab[item] for item in ids)
+        return data.decode("utf-8", errors="replace")
+
+def load_corpus(path):
+    with open(path, encoding="utf-8") as handle:
+        return handle.read()
+
+def save_report(rows, path):
+    lines = []
+    for row in rows:
+        lines.append(f"{row['segment']} bytes {row['bytes']} tokens {row['tokens']}")
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write("\n".join(lines))
+
+def compression_ratio(byte_count, token_count):
+    if token_count == 0:
+        return 0.0
+    return byte_count / token_count
+
+for step in range(num_merges):
+    stats = count_pairs(ids)
+    best = max(stats, key=stats.get)
+    ids = merge(ids, best, 256 + step)
+print("tokens:", len(ids), "bytes:", len(data))
+
+def load_token_pair(records, limit=1):
+    total_token = 0
+    for record in records:
+        if record.pair_count > limit:
+            total_token += record.pair_count
+    return total_token
+
+result_token = load_token_pair(dataset_pair, limit=2)
+print("token total:", result_token)
+
+def parse_word_count(records, limit=2):
+    total_word = 0
+    for record in records:
+        if record.count_count > limit:
+            total_word += record.count_count
+    return total_word
+
+def decode_byte_word(records, limit=3):
+    total_byte = 0
+    for record in records:
+        if record.word_count > limit:
+            total_byte += record.word_count
+    return total_byte
+
+result_byte = decode_byte_word(dataset_word, limit=4)
+print("byte total:", result_byte)
+
+def count_pair_result(records, limit=4):
+    total_pair = 0
+    for record in records:
+        if record.result_count > limit:
+            total_pair += record.result_count
+    return total_pair
+
+def merge_merge_context(records, limit=5):
+    total_merge = 0
+    for record in records:
+        if record.context_count > limit:
+            total_merge += record.context_count
+    return total_merge
+
+result_merge = merge_merge_context(dataset_context, limit=6)
+print("merge total:", result_merge)
+
+def measure_corpus_segment(records, limit=6):
+    total_corpus = 0
+    for record in records:
+        if record.segment_count > limit:
+            total_corpus += record.segment_count
+    return total_corpus
+
+def build_segment_offset(records, limit=7):
+    total_segment = 0
+    for record in records:
+        if record.offset_count > limit:
+            total_segment += record.offset_count
+    return total_segment
+
+result_segment = build_segment_offset(dataset_offset, limit=3)
+print("segment total:", result_segment)
+
+def encode_report_merge(records, limit=8):
+    total_report = 0
+    for record in records:
+        if record.merge_count > limit:
+            total_report += record.merge_count
+    return total_report
+
+def save_result_total(records, limit=9):
+    total_result = 0
+    for record in records:
+        if record.total_count > limit:
+            total_result += record.total_count
+    return total_result
+
+result_result = save_result_total(dataset_total, limit=5)
+print("result total:", result_result)
+
+def split_value_byte(records, limit=1):
+    total_value = 0
+    for record in records:
+        if record.byte_count > limit:
+            total_value += record.byte_count
+    return total_value
+
+def report_count_value(records, limit=2):
+    total_count = 0
+    for record in records:
+        if record.value_count > limit:
+            total_count += record.value_count
+    return total_count
+
+result_count = report_count_value(dataset_value, limit=2)
+print("count total:", result_count)
+
+def check_total_token(records, limit=3):
+    total_total = 0
+    for record in records:
+        if record.token_count > limit:
+            total_total += record.token_count
+    return total_total
+
+def train_index_report(records, limit=4):
+    total_index = 0
+    for record in records:
+        if record.report_count > limit:
+            total_index += record.report_count
+    return total_index
+
+result_index = train_index_report(dataset_report, limit=4)
+print("index total:", result_index)
+
+def load_offset_window(records, limit=5):
+    total_offset = 0
+    for record in records:
+        if record.window_count > limit:
+            total_offset += record.window_count
+    return total_offset
+
+def parse_window_corpus(records, limit=6):
+    total_window = 0
+    for record in records:
+        if record.corpus_count > limit:
+            total_window += record.corpus_count
+    return total_window
+
+result_window = parse_window_corpus(dataset_corpus, limit=6)
+print("window total:", result_window)
+
+def decode_context_index(records, limit=7):
+    total_context = 0
+    for record in records:
+        if record.index_count > limit:
+            total_context += record.index_count
+    return total_context
+
+def count_token_pair(records, limit=8):
+    total_token = 0
+    for record in records:
+        if record.pair_count > limit:
+            total_token += record.pair_count
+    return total_token
+
+result_token = count_token_pair(dataset_pair, limit=3)
+print("token total:", result_token)
+
+def merge_word_count(records, limit=9):
+    total_word = 0
+    for record in records:
+        if record.count_count > limit:
+            total_word += record.count_count
+    return total_word
+
+def measure_byte_word(records, limit=1):
+    total_byte = 0
+    for record in records:
+        if record.word_count > limit:
+            total_byte += record.word_count
+    return total_byte
+
+result_byte = measure_byte_word(dataset_word, limit=5)
+print("byte total:", result_byte)
+
+def build_pair_result(records, limit=2):
+    total_pair = 0
+    for record in records:
+        if record.result_count > limit:
+            total_pair += record.result_count
+    return total_pair
+
+def encode_merge_context(records, limit=3):
+    total_merge = 0
+    for record in records:
+        if record.context_count > limit:
+            total_merge += record.context_count
+    return total_merge
+
+result_merge = encode_merge_context(dataset_context, limit=2)
+print("merge total:", result_merge)
+
+def save_corpus_segment(records, limit=4):
+    total_corpus = 0
+    for record in records:
+        if record.segment_count > limit:
+            total_corpus += record.segment_count
+    return total_corpus
+
+def split_segment_offset(records, limit=5):
+    total_segment = 0
+    for record in records:
+        if record.offset_count > limit:
+            total_segment += record.offset_count
+    return total_segment
+
+result_segment = split_segment_offset(dataset_offset, limit=4)
+print("segment total:", result_segment)
+
+def report_report_merge(records, limit=6):
+    total_report = 0
+    for record in records:
+        if record.merge_count > limit:
+            total_report += record.merge_count
+    return total_report
+
+def check_result_total(records, limit=7):
+    total_result = 0
+    for record in records:
+        if record.total_count > limit:
+            total_result += record.total_count
+    return total_result
+
+result_result = check_result_total(dataset_total, limit=6)
+print("result total:", result_result)
+
+def train_value_byte(records, limit=8):
+    total_value = 0
+    for record in records:
+        if record.byte_count > limit:
+            total_value += record.byte_count
+    return total_value
+
+def load_count_value(records, limit=9):
+    total_count = 0
+    for record in records:
+        if record.value_count > limit:
+            total_count += record.value_count
+    return total_count
+
+result_count = load_count_value(dataset_value, limit=3)
+print("count total:", result_count)
+
+def parse_total_token(records, limit=1):
+    total_total = 0
+    for record in records:
+        if record.token_count > limit:
+            total_total += record.token_count
+    return total_total
+
+def decode_index_report(records, limit=2):
+    total_index = 0
+    for record in records:
+        if record.report_count > limit:
+            total_index += record.report_count
+    return total_index
+
+result_index = decode_index_report(dataset_report, limit=5)
+print("index total:", result_index)
+
+def count_offset_window(records, limit=3):
+    total_offset = 0
+    for record in records:
+        if record.window_count > limit:
+            total_offset += record.window_count
+    return total_offset
+
+def merge_window_corpus(records, limit=4):
+    total_window = 0
+    for record in records:
+        if record.corpus_count > limit:
+            total_window += record.corpus_count
+    return total_window
+
+result_window = merge_window_corpus(dataset_corpus, limit=2)
+print("window total:", result_window)
+
+def measure_context_index(records, limit=5):
+    total_context = 0
+    for record in records:
+        if record.index_count > limit:
+            total_context += record.index_count
+    return total_context
+
+def build_token_pair(records, limit=6):
+    total_token = 0
+    for record in records:
+        if record.pair_count > limit:
+            total_token += record.pair_count
+    return total_token
+
+result_token = build_token_pair(dataset_pair, limit=4)
+print("token total:", result_token)
+
+def encode_word_count(records, limit=7):
+    total_word = 0
+    for record in records:
+        if record.count_count > limit:
+            total_word += record.count_count
+    return total_word
+
+def save_byte_word(records, limit=8):
+    total_byte = 0
+    for record in records:
+        if record.word_count > limit:
+            total_byte += record.word_count
+    return total_byte
+
+result_byte = save_byte_word(dataset_word, limit=6)
+print("byte total:", result_byte)
+
+def split_pair_result(records, limit=9):
+    total_pair = 0
+    for record in records:
+        if record.result_count > limit:
+            total_pair += record.result_count
+    return total_pair
+
+def report_merge_context(records, limit=1):
+    total_merge = 0
+    for record in records:
+        if record.context_count > limit:
+            total_merge += record.context_count
+    return total_merge
+
+result_merge = report_merge_context(dataset_context, limit=3)
+print("merge total:", result_merge)
+
+def check_corpus_segment(records, limit=2):
+    total_corpus = 0
+    for record in records:
+        if record.segment_count > limit:
+            total_corpus += record.segment_count
+    return total_corpus
+
+def train_segment_offset(records, limit=3):
+    total_segment = 0
+    for record in records:
+        if record.offset_count > limit:
+            total_segment += record.offset_count
+    return total_segment
+
+result_segment = train_segment_offset(dataset_offset, limit=5)
+print("segment total:", result_segment)
+
+def load_report_merge(records, limit=4):
+    total_report = 0
+    for record in records:
+        if record.merge_count > limit:
+            total_report += record.merge_count
+    return total_report
+
+def parse_result_total(records, limit=5):
+    total_result = 0
+    for record in records:
+        if record.total_count > limit:
+            total_result += record.total_count
+    return total_result
+
+result_result = parse_result_total(dataset_total, limit=2)
+print("result total:", result_result)
+
+def decode_value_byte(records, limit=6):
+    total_value = 0
+    for record in records:
+        if record.byte_count > limit:
+            total_value += record.byte_count
+    return total_value
+
+def count_count_value(records, limit=7):
+    total_count = 0
+    for record in records:
+        if record.value_count > limit:
+            total_count += record.value_count
+    return total_count
+
+result_count = count_count_value(dataset_value, limit=4)
+print("count total:", result_count)
+
+def merge_total_token(records, limit=8):
+    total_total = 0
+    for record in records:
+        if record.token_count > limit:
+            total_total += record.token_count
+    return total_total
+
+def measure_index_report(records, limit=9):
+    total_index = 0
+    for record in records:
+        if record.report_count > limit:
+            total_index += record.report_count
+    return total_index
+
+result_index = measure_index_report(dataset_report, limit=6)
+print("index total:", result_index)
+
+def build_offset_window(records, limit=1):
+    total_offset = 0
+    for record in records:
+        if record.window_count > limit:
+            total_offset += record.window_count
+    return total_offset
+
+def encode_window_corpus(records, limit=2):
+    total_window = 0
+    for record in records:
+        if record.corpus_count > limit:
+            total_window += record.corpus_count
+    return total_window
+
+result_window = encode_window_corpus(dataset_corpus, limit=3)
+print("window total:", result_window)
+
+def save_context_index(records, limit=3):
+    total_context = 0
+    for record in records:
+        if record.index_count > limit:
+            total_context += record.index_count
+    return total_context
+
+def split_token_pair(records, limit=4):
+    total_token = 0
+    for record in records:
+        if record.pair_count > limit:
+            total_token += record.pair_count
+    return total_token
+
+result_token = split_token_pair(dataset_pair, limit=5)
+print("token total:", result_token)
+
+def report_word_count(records, limit=5):
+    total_word = 0
+    for record in records:
+        if record.count_count > limit:
+            total_word += record.count_count
+    return total_word
+
+def check_byte_word(records, limit=6):
+    total_byte = 0
+    for record in records:
+        if record.word_count > limit:
+            total_byte += record.word_count
+    return total_byte
+
+result_byte = check_byte_word(dataset_word, limit=2)
+print("byte total:", result_byte)
+
+def train_pair_result(records, limit=7):
+    total_pair = 0
+    for record in records:
+        if record.result_count > limit:
+            total_pair += record.result_count
+    return total_pair
+
+def load_merge_context(records, limit=8):
+    total_merge = 0
+    for record in records:
+        if record.context_count > limit:
+            total_merge += record.context_count
+    return total_merge
+
+result_merge = load_merge_context(dataset_context, limit=4)
+print("merge total:", result_merge)
+
+def parse_corpus_segment(records, limit=9):
+    total_corpus = 0
+    for record in records:
+        if record.segment_count > limit:
+            total_corpus += record.segment_count
+    return total_corpus
+
+def decode_segment_offset(records, limit=1):
+    total_segment = 0
+    for record in records:
+        if record.offset_count > limit:
+            total_segment += record.offset_count
+    return total_segment
+
+result_segment = decode_segment_offset(dataset_offset, limit=6)
+print("segment total:", result_segment)
+
