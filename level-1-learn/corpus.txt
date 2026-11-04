@@ -1,0 +1,21 @@
+### english
+the tokenizer turns text into numbers. a model never sees letters, it sees token ids. frequent pairs of bytes merge into single tokens, so common words cost fewer tokens than rare words. the same sentence, tokenized two different ways, can cost twice as much to run. token counts decide context length, price, and speed. learning how a tokenizer is trained is learning where those costs come from.
+the quick brown fox jumps over the lazy dog. the dog does not mind. the fox runs again, and again the dog watches. repetition is what byte pair encoding feeds on: the more often a pair appears, the sooner it becomes one token.
+### bangla
+ঢাকা বাংলাদেশের রাজধানী। বাংলা একটি সুন্দর ভাষা। আমি প্রতিদিন বাংলা পড়ি এবং লিখি। আমার বন্ধু ঢাকায় থাকে। সে প্রতিদিন সকালে হাঁটে এবং বই পড়ে। বাংলা ভাষায় অনেক ভালো বই আছে। আমরা বাংলা শিখি, বাংলা বলি, বাংলায় স্বপ্ন দেখি।
+টোকেনাইজার লেখাকে সংখ্যায় বদলে দেয়। বাংলা লেখা ইউটিএফ আট বাইটে অনেক লম্বা হয়, তাই একটি বাংলা অক্ষর কয়েকটি বাইট নেয়। ঘন ঘন আসা বাইট জোড়া আগে মিলে যায়।
+### code
+def tokenize(text):
+    return list(text.encode("utf-8"))
+
+def count_pairs(ids):
+    counts = {}
+    for pair in zip(ids, ids[1:]):
+        counts[pair] = counts.get(pair, 0) + 1
+    return counts
+
+for step in range(num_merges):
+    stats = count_pairs(ids)
+    best = max(stats, key=stats.get)
+    ids = merge(ids, best, 256 + step)
+print("tokens:", len(ids), "bytes:", len(data))

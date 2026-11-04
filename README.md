@@ -2,8 +2,11 @@
 
 A byte-pair encoding tokenizer built from zero and trained on English, Bangla, and code.
 
-Status: SCAFFOLD (Wave 0, ROADMAP-V3-BATCH, 2026-11-04). Scaffold is not built. No results exist yet.
-Project: P02. Fleet node: BlackBoxV3. Wave: Wave 1.
+Status: LEARN DONE 2026-11-04 (ROADMAP-V3-BATCH, Sprint 1).
+Level 1 code runs with 11 passing unit tests and one measured training
+run on a 2,011-byte mixed English, Bangla, and code corpus. Build and
+Deep are not started. The Wave 0 scaffold claim is superseded by this
+line. Project: P02. Fleet node: BlackBoxV3. Wave: Wave 1.
 
 ## Start here
 
@@ -22,7 +25,7 @@ Project: P02. Fleet node: BlackBoxV3. Wave: Wave 1.
 
 | Test | Result |
 | --- | --- |
-| NO RESULTS YET | No measurement has run. This table fills only with measured numbers, with method. |
+| Level 1 BPE training run, 2,011-byte mixed corpus, byte-level BPE from zero (method: level-1-learn/README.md), 2026-11-04 | Trained with 200 merges, the tokenizer encodes the full corpus in 643 tokens against 2,011 bytes at zero merges. Per segment at 200 merges: english 624 bytes in 292 tokens (2.137 bytes per token), bangla 1,004 bytes in 208 tokens (4.827), code 381 bytes in 143 tokens (2.664). The first Bangla sentence encodes in 19 tokens and round trips exactly. |
 
 ## Novelty
 
