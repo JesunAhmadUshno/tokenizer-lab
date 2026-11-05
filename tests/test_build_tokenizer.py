@@ -10,8 +10,7 @@ import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))), "level-2-build"))
-from tokenizer import (FIRST_MERGE_ID, SPECIAL_TOKENS, BuildTokenizer,
-                       pre_tokenize)
+from tokenizer import FIRST_MERGE_ID, SPECIAL_TOKENS, BuildTokenizer, pre_tokenize
 
 
 def trained(merges=100):
