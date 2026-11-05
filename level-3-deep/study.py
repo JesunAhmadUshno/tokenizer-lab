@@ -42,8 +42,7 @@ from collections import Counter
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 sys.path.insert(0, os.path.join(REPO, "level-2-build"))
-from tokenizer import (FIRST_MERGE_ID, SPECIAL_TOKENS, BuildTokenizer,
-                       merge_pair)
+from tokenizer import FIRST_MERGE_ID, SPECIAL_TOKENS, BuildTokenizer, merge_pair  # noqa: E402
 
 CORPUS_PATH = os.path.join(REPO, "level-2-build", "corpus.txt")
 HELDOUT_PATH = os.path.join(HERE, "heldout.json")
@@ -110,7 +109,6 @@ class NoPreTokenizer(BuildTokenizer):
         return ids
 
     def encode(self, text):
-        import re
         from tokenizer import _SPECIAL_RE
         out = []
         for part in _SPECIAL_RE.split(text):

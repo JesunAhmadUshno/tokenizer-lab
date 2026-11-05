@@ -11,9 +11,8 @@ import unittest
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "level-3-deep"))
 sys.path.insert(0, os.path.join(REPO, "level-2-build"))
-from study import (NoPreTokenizer, load_heldout, load_training_text,
-                   segment_metrics, summarize_counts, train_variants)
-from tokenizer import BuildTokenizer
+from study import NoPreTokenizer, load_heldout, load_training_text, segment_metrics, summarize_counts, train_variants  # noqa: E402
+from tokenizer import BuildTokenizer  # noqa: E402
 
 _cache = {}
 
