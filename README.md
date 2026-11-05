@@ -40,6 +40,27 @@ by this line. Project: P02. Fleet node: BlackBoxV3. Wave: Wave 1.
 | Level 2 BPE run, 61,885-byte synthetic mixed corpus, pre-tokenization and special tokens on (method: level-2-build/README.md), 2026-11-04 | Trained with 1,000 merges, the tokenizer encodes the full corpus in 11,142 tokens against 61,885 bytes at zero merges. Per segment at 1,000 merges: english 21,792 bytes in 5,175 tokens (4.211 bytes per token), bangla 24,801 bytes in 2,696 tokens (9.199), code 15,290 bytes in 3,269 tokens (4.677). The high Bangla ratio is a template repetition effect of the synthetic corpus (897 unique pre-tokens), stated in the level README. Save and load round trip verified in the same run. |
 | Level 3 Deep study, three variants trained on the 61,885-byte Build corpus, measured on a 1,332-byte authored held-out set disjoint from the training corpus (method: level-3-deep/README.md), 2026-11-04 | Held-out totals: variant A (pre-tokenization on, 500 merges, vocab 761) 555 tokens at 2.400 bytes per token; variant B (pre-tokenization off, 500 merges, vocab 761) 552 tokens at 2.413, with encode wall about 8 times variant A; variant C (pre-tokenization on, 100 merges, vocab 361) 749 tokens at 1.778; byte baseline 1,332 tokens at 1.000. All variants round trip all held-out segments exactly. Merge count is the big held-out cost lever (C to A cuts tokens 25.9 percent); pre-tokenization changes encode speed and token shape, not count. |
 
+## Fan-out
+
+Written fan-out set for v1.0, in fanout/ (publicity log and grades
+in PUBLICITY.md at the repo root):
+
+- fanout/blog-post.md: the build story and the measured results,
+  with the main results claim and the honest limits.
+- fanout/tutorial.md: course module P02-tokenizer-lab. Every
+  command in it was run and verified at v1.0 (three runners, three
+  per-level test discoveries, full suite at 36 tests).
+- fanout/website-page.md: project page copy only. Nothing was
+  published to any website by this set.
+- fanout/linkedin-post.md: LinkedIn draft, marked DRAFT NOT
+  POSTED, link carried as the first-comment line per the platform
+  rule.
+- fanout/paper-candidate.md: brief for the tokenizer choice cost
+  and quality study on held-out text. Submission is Jesun's tap;
+  nothing submitted, no venue contacted.
+- fanout/release-notes.md: draft notes for the existing releases
+  v0.1, v0.5, and v1.0 only. No new release was created.
+
 ## Novelty
 
 PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
