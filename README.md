@@ -2,6 +2,11 @@
 
 A byte-pair encoding tokenizer built from zero and trained on English, Bangla, and code.
 
+Live dashboard: https://jesunahmadushno.github.io/tokenizer-lab/ (train the tokenizer in your
+browser on the committed corpus, tokenize your own text, and explore the recorded held-out
+study; built from site/, and the build fails unless the JavaScript port reproduces every
+recorded Python token count).
+
 Status: DEEP DONE 2026-11-04 (ROADMAP-V3-BATCH, Sprint 1), as a
 COMPRESSED Deep under the December Compression Protocol.
 Level 1 code runs with 11 passing unit tests and one measured training
@@ -39,6 +44,8 @@ by this line. Project: P02. Fleet node: BlackBoxV3. Wave: Wave 1.
 | Level 1 BPE training run, 2,011-byte mixed corpus, byte-level BPE from zero (method: level-1-learn/README.md), 2026-11-04 | Trained with 200 merges, the tokenizer encodes the full corpus in 643 tokens against 2,011 bytes at zero merges. Per segment at 200 merges: english 624 bytes in 292 tokens (2.137 bytes per token), bangla 1,004 bytes in 208 tokens (4.827), code 381 bytes in 143 tokens (2.664). The first Bangla sentence encodes in 19 tokens and round trips exactly. |
 | Level 2 BPE run, 61,885-byte synthetic mixed corpus, pre-tokenization and special tokens on (method: level-2-build/README.md), 2026-11-04 | Trained with 1,000 merges, the tokenizer encodes the full corpus in 11,142 tokens against 61,885 bytes at zero merges. Per segment at 1,000 merges: english 21,792 bytes in 5,175 tokens (4.211 bytes per token), bangla 24,801 bytes in 2,696 tokens (9.199), code 15,290 bytes in 3,269 tokens (4.677). The high Bangla ratio is a template repetition effect of the synthetic corpus (897 unique pre-tokens), stated in the level README. Save and load round trip verified in the same run. |
 | Level 3 Deep study, three variants trained on the 61,885-byte Build corpus, measured on a 1,332-byte authored held-out set disjoint from the training corpus (method: level-3-deep/README.md), 2026-11-04 | Held-out totals: variant A (pre-tokenization on, 500 merges, vocab 761) 555 tokens at 2.400 bytes per token; variant B (pre-tokenization off, 500 merges, vocab 761) 552 tokens at 2.413, with encode wall about 8 times variant A; variant C (pre-tokenization on, 100 merges, vocab 361) 749 tokens at 1.778; byte baseline 1,332 tokens at 1.000. All variants round trip all held-out segments exactly. Merge count is the big held-out cost lever (C to A cuts tokens 25.9 percent); pre-tokenization changes encode speed and token shape, not count. |
+
+Rigor additions (2026-11-07, level-3-deep/results_rigor.json, method in level-3-deep/README.md): a dense held-out sweep every 25 merges, paired bootstrap intervals (C minus A 194 tokens, 95 percent interval 171 to 217; A minus B -19, interval -38 to 0), a 2x2 that separates merge learning from encoding, an encode-length scaling run, and a training-mix ablation. Research grading and open gaps: docs/research-review.md.
 
 ## Fan-out
 
