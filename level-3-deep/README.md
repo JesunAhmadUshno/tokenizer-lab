@@ -156,3 +156,46 @@ From the actual Deep runs and tests:
   quality is round-trip exactness plus labelled proxies only.
 - The run executed on the Muse VM, not the assigned BlackBoxV3
   fleet node (the standing pattern for this batch).
+
+## Rigor additions (2026-11-07)
+
+`python level-3-deep/run_rigor.py` (stdlib, well under a minute) writes
+results_rigor.json. Numbers below are from that file; the run was on an
+aarch64 machine, Python 3.12.3. The site's build-time parity gate
+(site/src/bpe.check.mjs) re-derives every token count in it from an
+independent JavaScript port.
+
+- Dense held-out sweep, 0 to 1,000 merges in steps of 25. Variant A
+  held-out tokens: the first 100 merges save 583, merges 100 to 500
+  save 194, merges 500 to 1,000 save 74 (555 to 481). Diminishing
+  returns, no plateau yet at 1,000. Variant B is cheaper than A at 21
+  of the 41 steps, so neither pre-tokenization setting wins on count.
+- Paired stratified bootstrap (1,000 replicates, seed 20261107) over
+  20 held-out units (5 English sentences, 5 Bangla sentences, 10 code
+  lines). C minus A: 194 tokens, 95 percent interval 171 to 217 (a
+  26.2 percent cut, interval 23.1 to 29.7). A minus B: -19 tokens,
+  interval -38 to 0. Encoded unit by unit A is slightly cheaper,
+  while on whole segments B is (552 against 555), so the sign of the
+  pre-tokenization effect depends on chunking and the claim stays
+  "no meaningful count difference".
+- Pre-tokenization 2x2 at 500 merges (held-out tokens, median encode
+  ms over 15 repeats): merges learned inside pre-tokens with per
+  pre-token encoding 555 / 0.67; same merges with whole-text encoding
+  555 / 14.54; merges learned over the whole sequence with per
+  pre-token encoding 654 / 0.55; whole-sequence both ways (variant B)
+  552 / 16.36. The token count follows how merges were learned; the
+  encode slowdown follows the encoder.
+- Encode-length scaling (held-out text repeated 1, 2, 4, 8 times,
+  median of 9): A 0.69 to 5.23 ms, B 16.38 to 129.61 ms. The B to A
+  ratio stays at 23.7 to 24.8. Correction to the failure mode above:
+  B's encode cost is a constant factor in this implementation, not a
+  super-linear blow-up, because the number of whole-text rescans is
+  bounded by the merges that apply, not by text length. The ratio
+  also differs by machine (about 8 in the 2026-11-04 runs, about 24
+  here), so only "several times slower" is a stable finding.
+- Training-mix ablation, variant A at 500 merges, held-out tokens
+  (bangla / code / english / total): full mix 159 / 141 / 253 / 555;
+  without english 137 / 148 / 359 / 646; without bangla 613 / 141 /
+  234 / 990; without code 152 / 200 / 259 / 613. Removing a language
+  from training costs that language most; held-out Bangla falls back
+  to one token per byte (613) when Bangla is left out.

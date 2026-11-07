@@ -13,3 +13,12 @@ Ship state, updated 2026-11-04 at v1.0: Learn, Build, and compressed Deep are do
 ## Future
 
 Open problems and the project's next steps sit in the Deep level scope in SPEC.md. Any forecast about this field is [unverified] unless a dated primary source is added here at the wave update.
+
+## References
+
+Standard prior art for this project, added 2026-11-07. None of these was re-run here; they frame what the measurements can and cannot be compared with.
+
+1. Philip Gage. "A New Algorithm for Data Compression." The C Users Journal 12(2), February 1994, pages 23 to 38. The original byte pair encoding compression algorithm.
+2. Rico Sennrich, Barry Haddow, Alexandra Birch. "Neural Machine Translation of Rare Words with Subword Units." ACL 2016, pages 1715 to 1725. arXiv:1508.07909. BPE adapted to subword vocabularies.
+3. Taku Kudo, John Richardson. "SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing." EMNLP 2018, System Demonstrations, pages 66 to 71. arXiv:1808.06226. The library named as prior art in NOVELTY.md.
+4. Aleksandar Petrov, Emanuele La Malfa, Philip H. S. Torr, Adel Bibi. "Language Model Tokenizers Introduce Unfairness Between Languages." NeurIPS 2023. arXiv:2305.15425. Cross-language token-count disparity, directly relevant to the Bangla fertility numbers here.
