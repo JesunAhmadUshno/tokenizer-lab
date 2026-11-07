@@ -39,7 +39,9 @@ python level-1-learn/train_bpe.py
 python -m unittest discover -s tests -p "test_learn*.py" -v
 ```
 
-No dependencies. Python 3.12 standard library only.
+No dependencies. Python 3.12 standard library only. The runner also
+writes its numbers to results_learn.json in this folder, which the
+live dashboard reads at build time.
 
 ## Measured results (2026-11-04, Muse VM, Python 3.12.3)
 

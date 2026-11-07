@@ -1,0 +1,62 @@
+{
+ "corpus_bytes": 2011,
+ "segment_bytes": {
+  "english": 624,
+  "bangla": 1004,
+  "code": 381
+ },
+ "sweep": [
+  {
+   "merges": 0,
+   "vocab_size": 256,
+   "tokens": 2011
+  },
+  {
+   "merges": 25,
+   "vocab_size": 281,
+   "tokens": 1269
+  },
+  {
+   "merges": 50,
+   "vocab_size": 306,
+   "tokens": 1060
+  },
+  {
+   "merges": 100,
+   "vocab_size": 356,
+   "tokens": 859
+  },
+  {
+   "merges": 200,
+   "vocab_size": 456,
+   "tokens": 643
+  }
+ ],
+ "per_segment_200": [
+  {
+   "segment": "english",
+   "bytes": 624,
+   "tokens": 292,
+   "bytes_per_token": 2.136986301369863,
+   "ratio": 2.136986301369863
+  },
+  {
+   "segment": "bangla",
+   "bytes": 1004,
+   "tokens": 208,
+   "bytes_per_token": 4.826923076923077,
+   "ratio": 4.826923076923077
+  },
+  {
+   "segment": "code",
+   "bytes": 381,
+   "tokens": 143,
+   "bytes_per_token": 2.664335664335664,
+   "ratio": 2.664335664335664
+  }
+ ],
+ "bangla_first_sentence": {
+  "tokens": 19,
+  "roundtrip_exact": true
+ }
+}
