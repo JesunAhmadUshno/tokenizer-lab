@@ -1,0 +1,97 @@
+{
+ "corpus_bytes": 61885,
+ "segment_bytes": {
+  "english": 21792,
+  "bangla": 24801,
+  "code": 15290
+ },
+ "unique_pre_tokens": 897,
+ "sweep": [
+  {
+   "merges": 0,
+   "vocab_size": 261,
+   "tokens": 61885
+  },
+  {
+   "merges": 100,
+   "vocab_size": 361,
+   "tokens": 28391
+  },
+  {
+   "merges": 250,
+   "vocab_size": 511,
+   "tokens": 20235
+  },
+  {
+   "merges": 500,
+   "vocab_size": 761,
+   "tokens": 14894
+  },
+  {
+   "merges": 1000,
+   "vocab_size": 1261,
+   "tokens": 11142
+  }
+ ],
+ "per_segment": {
+  "500": {
+   "segments": [
+    {
+     "segment": "english",
+     "bytes": 21792,
+     "tokens": 6681,
+     "bytes_per_token": 3.261787157611136
+    },
+    {
+     "segment": "bangla",
+     "bytes": 24801,
+     "tokens": 4097,
+     "bytes_per_token": 6.053453746643886
+    },
+    {
+     "segment": "code",
+     "bytes": 15290,
+     "tokens": 4114,
+     "bytes_per_token": 3.716577540106952
+    }
+   ],
+   "total": {
+    "bytes": 61883,
+    "tokens": 14892,
+    "bytes_per_token": 4.155452591995703
+   }
+  },
+  "1000": {
+   "segments": [
+    {
+     "segment": "english",
+     "bytes": 21792,
+     "tokens": 5175,
+     "bytes_per_token": 4.211014492753623
+    },
+    {
+     "segment": "bangla",
+     "bytes": 24801,
+     "tokens": 2696,
+     "bytes_per_token": 9.199183976261127
+    },
+    {
+     "segment": "code",
+     "bytes": 15290,
+     "tokens": 3269,
+     "bytes_per_token": 4.677271336800245
+    }
+   ],
+   "total": {
+    "bytes": 61883,
+    "tokens": 11140,
+    "bytes_per_token": 5.555026929982047
+   }
+  }
+ },
+ "bangla_first_sentence": {
+  "tokens": 16,
+  "roundtrip_exact": true
+ },
+ "save_load_identical": true
+}

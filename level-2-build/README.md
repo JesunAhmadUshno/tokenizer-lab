@@ -53,7 +53,9 @@ python level-2-build/run_build.py
 python -m unittest discover -s tests -p "test_build*.py" -v
 ```
 
-No dependencies. Python 3.12 standard library only.
+No dependencies. Python 3.12 standard library only. The runner also
+writes its numbers to results_build.json in this folder, which the
+live dashboard reads at build time.
 
 ## Measured results (2026-11-04, Muse VM, Python 3.12.3)
 

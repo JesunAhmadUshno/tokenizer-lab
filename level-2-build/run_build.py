@@ -4,9 +4,11 @@ Run: python level-2-build/run_build.py
 
 Prints a merge sweep (0, 100, 250, 500, 1000 merges), a per-segment
 compression table at 500 and at 1000 merges, and a save and load
-round-trip check at 1000 merges. All numbers come from the corpus
+round-trip check at 1000 merges, and writes the same numbers to
+results_build.json beside this file. All numbers come from the corpus
 in this folder. Nothing is estimated.
 """
+import json
 import os
 import sys
 import tempfile
@@ -35,7 +37,8 @@ def print_segment_table(tok, segments, merges):
     print(f"Per-segment compression at {merges} merges:")
     total_bytes = 0
     total_tokens = 0
-    for row in compression_report(tok, segments):
+    rows = compression_report(tok, segments)
+    for row in rows:
         total_bytes += row["bytes"]
         total_tokens += row["tokens"]
         print(f"  {row['segment']:<8} bytes {row['bytes']:>5} tokens {row['tokens']:>5} "
@@ -43,6 +46,8 @@ def print_segment_table(tok, segments, merges):
     print(f"  {'total':<8} bytes {total_bytes:>5} tokens {total_tokens:>5} "
           f"bytes/token {total_bytes / total_tokens:.3f}")
     print()
+    return {"segments": rows, "total": {"bytes": total_bytes, "tokens": total_tokens,
+                                        "bytes_per_token": total_bytes / total_tokens}}
 
 
 def main():
@@ -53,20 +58,26 @@ def main():
     print(f"Full corpus: {len(full.encode('utf-8'))} UTF-8 bytes")
     print(f"Unique pre-tokens in full corpus: {len(set(pre_tokenize(full)))}")
     print()
+    results = {"corpus_bytes": len(full.encode("utf-8")),
+               "segment_bytes": {name: len(text.encode("utf-8")) for name, text in segments.items()},
+               "unique_pre_tokens": len(set(pre_tokenize(full))),
+               "sweep": [], "per_segment": {}}
     print("Merge sweep (whole corpus):")
     for num_merges in (0, 100, 250, 500, 1000):
         tok = BuildTokenizer().train(full, num_merges)
         n_tokens = len(tok.encode(full))
+        results["sweep"].append({"merges": num_merges, "vocab_size": tok.vocab_size, "tokens": n_tokens})
         print(f"  merges {num_merges:>4}: vocab {tok.vocab_size:>4}, tokens {n_tokens}")
     print()
     for merges in (500, 1000):
         tok = BuildTokenizer().train(full, merges)
-        print_segment_table(tok, segments, merges)
+        results["per_segment"][str(merges)] = print_segment_table(tok, segments, merges)
     tok = BuildTokenizer().train(full, 1000)
     sample = segments["bangla"].split("।")[0] + "।"
     ids = tok.encode(sample)
     print(f"Round trip check (first Bangla sentence): {len(ids)} tokens, "
           f"exact: {tok.decode(ids) == sample}")
+    results["bangla_first_sentence"] = {"tokens": len(ids), "roundtrip_exact": tok.decode(ids) == sample}
     special_ids = tok.encode("start <|eos|> end")
     print(f"Special token check: '<|eos|>' in 'start <|eos|> end' encodes as "
           f"one id {tok.special_tokens['<|eos|>']}, present: "
@@ -81,6 +92,12 @@ def main():
         print(f"Save/load check: saved to JSON, reloaded, encodes identical "
               f"on probe text: {same}, merges loaded: {len(loaded.merges)}, "
               f"vocab size loaded: {loaded.vocab_size}")
+    results["save_load_identical"] = same
+    out = os.path.join(HERE, "results_build.json")
+    with open(out, "w", encoding="utf-8") as fh:
+        json.dump(results, fh, ensure_ascii=False, indent=1)
+        fh.write("\n")
+    print(f"Wrote {out}")
 
 
 if __name__ == "__main__":
