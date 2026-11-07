@@ -1,0 +1,924 @@
+{
+ "run": {
+  "date": "2026-11-07",
+  "python": "3.12.3",
+  "machine": "aarch64"
+ },
+ "sweep": {
+  "steps": [
+   0,
+   25,
+   50,
+   75,
+   100,
+   125,
+   150,
+   175,
+   200,
+   225,
+   250,
+   275,
+   300,
+   325,
+   350,
+   375,
+   400,
+   425,
+   450,
+   475,
+   500,
+   525,
+   550,
+   575,
+   600,
+   625,
+   650,
+   675,
+   700,
+   725,
+   750,
+   775,
+   800,
+   825,
+   850,
+   875,
+   900,
+   925,
+   950,
+   975,
+   1000
+  ],
+  "heldout_bytes": 1332,
+  "train_bytes": 61885,
+  "rows": [
+   {
+    "merges": 0,
+    "A": {
+     "bangla": 613,
+     "code": 254,
+     "english": 463,
+     "total": 1332
+    },
+    "B": {
+     "bangla": 613,
+     "code": 254,
+     "english": 463,
+     "total": 1332
+    },
+    "A_train_tokens": 61885
+   },
+   {
+    "merges": 25,
+    "A": {
+     "bangla": 306,
+     "code": 211,
+     "english": 385,
+     "total": 904
+    },
+    "B": {
+     "bangla": 301,
+     "code": 210,
+     "english": 380,
+     "total": 893
+    },
+    "A_train_tokens": 40442
+   },
+   {
+    "merges": 50,
+    "A": {
+     "bangla": 282,
+     "code": 190,
+     "english": 355,
+     "total": 829
+    },
+    "B": {
+     "bangla": 273,
+     "code": 193,
+     "english": 352,
+     "total": 819
+    },
+    "A_train_tokens": 34682
+   },
+   {
+    "merges": 75,
+    "A": {
+     "bangla": 263,
+     "code": 186,
+     "english": 341,
+     "total": 792
+    },
+    "B": {
+     "bangla": 253,
+     "code": 186,
+     "english": 339,
+     "total": 779
+    },
+    "A_train_tokens": 30940
+   },
+   {
+    "merges": 100,
+    "A": {
+     "bangla": 247,
+     "code": 175,
+     "english": 325,
+     "total": 749
+    },
+    "B": {
+     "bangla": 242,
+     "code": 178,
+     "english": 325,
+     "total": 746
+    },
+    "A_train_tokens": 28391
+   },
+   {
+    "merges": 125,
+    "A": {
+     "bangla": 228,
+     "code": 173,
+     "english": 316,
+     "total": 719
+    },
+    "B": {
+     "bangla": 235,
+     "code": 168,
+     "english": 317,
+     "total": 721
+    },
+    "A_train_tokens": 26426
+   },
+   {
+    "merges": 150,
+    "A": {
+     "bangla": 209,
+     "code": 160,
+     "english": 314,
+     "total": 685
+    },
+    "B": {
+     "bangla": 224,
+     "code": 158,
+     "english": 315,
+     "total": 698
+    },
+    "A_train_tokens": 24838
+   },
+   {
+    "merges": 175,
+    "A": {
+     "bangla": 200,
+     "code": 156,
+     "english": 311,
+     "total": 669
+    },
+    "B": {
+     "bangla": 209,
+     "code": 154,
+     "english": 311,
+     "total": 675
+    },
+    "A_train_tokens": 23428
+   },
+   {
+    "merges": 200,
+    "A": {
+     "bangla": 193,
+     "code": 155,
+     "english": 301,
+     "total": 651
+    },
+    "B": {
+     "bangla": 207,
+     "code": 150,
+     "english": 311,
+     "total": 669
+    },
+    "A_train_tokens": 22239
+   },
+   {
+    "merges": 225,
+    "A": {
+     "bangla": 189,
+     "code": 155,
+     "english": 298,
+     "total": 644
+    },
+    "B": {
+     "bangla": 202,
+     "code": 150,
+     "english": 304,
+     "total": 657
+    },
+    "A_train_tokens": 21194
+   },
+   {
+    "merges": 250,
+    "A": {
+     "bangla": 184,
+     "code": 155,
+     "english": 296,
+     "total": 637
+    },
+    "B": {
+     "bangla": 196,
+     "code": 150,
+     "english": 292,
+     "total": 639
+    },
+    "A_train_tokens": 20235
+   },
+   {
+    "merges": 275,
+    "A": {
+     "bangla": 183,
+     "code": 152,
+     "english": 283,
+     "total": 620
+    },
+    "B": {
+     "bangla": 194,
+     "code": 148,
+     "english": 284,
+     "total": 627
+    },
+    "A_train_tokens": 19425
+   },
+   {
+    "merges": 300,
+    "A": {
+     "bangla": 182,
+     "code": 148,
+     "english": 282,
+     "total": 614
+    },
+    "B": {
+     "bangla": 188,
+     "code": 142,
+     "english": 280,
+     "total": 611
+    },
+    "A_train_tokens": 18731
+   },
+   {
+    "merges": 325,
+    "A": {
+     "bangla": 178,
+     "code": 148,
+     "english": 274,
+     "total": 602
+    },
+    "B": {
+     "bangla": 183,
+     "code": 137,
+     "english": 277,
+     "total": 598
+    },
+    "A_train_tokens": 18105
+   },
+   {
+    "merges": 350,
+    "A": {
+     "bangla": 172,
+     "code": 145,
+     "english": 272,
+     "total": 591
+    },
+    "B": {
+     "bangla": 180,
+     "code": 137,
+     "english": 270,
+     "total": 588
+    },
+    "A_train_tokens": 17540
+   },
+   {
+    "merges": 375,
+    "A": {
+     "bangla": 167,
+     "code": 145,
+     "english": 270,
+     "total": 584
+    },
+    "B": {
+     "bangla": 177,
+     "code": 137,
+     "english": 269,
+     "total": 584
+    },
+    "A_train_tokens": 17026
+   },
+   {
+    "merges": 400,
+    "A": {
+     "bangla": 165,
+     "code": 143,
+     "english": 263,
+     "total": 573
+    },
+    "B": {
+     "bangla": 172,
+     "code": 132,
+     "english": 269,
+     "total": 574
+    },
+    "A_train_tokens": 16543
+   },
+   {
+    "merges": 425,
+    "A": {
+     "bangla": 165,
+     "code": 141,
+     "english": 262,
+     "total": 570
+    },
+    "B": {
+     "bangla": 170,
+     "code": 132,
+     "english": 265,
+     "total": 568
+    },
+    "A_train_tokens": 16092
+   },
+   {
+    "merges": 450,
+    "A": {
+     "bangla": 163,
+     "code": 141,
+     "english": 261,
+     "total": 567
+    },
+    "B": {
+     "bangla": 168,
+     "code": 130,
+     "english": 262,
+     "total": 561
+    },
+    "A_train_tokens": 15667
+   },
+   {
+    "merges": 475,
+    "A": {
+     "bangla": 162,
+     "code": 141,
+     "english": 254,
+     "total": 559
+    },
+    "B": {
+     "bangla": 162,
+     "code": 130,
+     "english": 261,
+     "total": 554
+    },
+    "A_train_tokens": 15269
+   },
+   {
+    "merges": 500,
+    "A": {
+     "bangla": 159,
+     "code": 141,
+     "english": 253,
+     "total": 555
+    },
+    "B": {
+     "bangla": 160,
+     "code": 130,
+     "english": 261,
+     "total": 552
+    },
+    "A_train_tokens": 14894
+   },
+   {
+    "merges": 525,
+    "A": {
+     "bangla": 156,
+     "code": 141,
+     "english": 252,
+     "total": 551
+    },
+    "B": {
+     "bangla": 158,
+     "code": 128,
+     "english": 261,
+     "total": 548
+    },
+    "A_train_tokens": 14538
+   },
+   {
+    "merges": 550,
+    "A": {
+     "bangla": 155,
+     "code": 141,
+     "english": 252,
+     "total": 550
+    },
+    "B": {
+     "bangla": 156,
+     "code": 128,
+     "english": 260,
+     "total": 545
+    },
+    "A_train_tokens": 14216
+   },
+   {
+    "merges": 575,
+    "A": {
+     "bangla": 152,
+     "code": 141,
+     "english": 251,
+     "total": 546
+    },
+    "B": {
+     "bangla": 156,
+     "code": 126,
+     "english": 258,
+     "total": 541
+    },
+    "A_train_tokens": 13916
+   },
+   {
+    "merges": 600,
+    "A": {
+     "bangla": 152,
+     "code": 141,
+     "english": 251,
+     "total": 546
+    },
+    "B": {
+     "bangla": 154,
+     "code": 126,
+     "english": 258,
+     "total": 539
+    },
+    "A_train_tokens": 13617
+   },
+   {
+    "merges": 625,
+    "A": {
+     "bangla": 149,
+     "code": 141,
+     "english": 250,
+     "total": 542
+    },
+    "B": {
+     "bangla": 154,
+     "code": 126,
+     "english": 257,
+     "total": 538
+    },
+    "A_train_tokens": 13342
+   },
+   {
+    "merges": 650,
+    "A": {
+     "bangla": 148,
+     "code": 141,
+     "english": 250,
+     "total": 541
+    },
+    "B": {
+     "bangla": 153,
+     "code": 126,
+     "english": 257,
+     "total": 537
+    },
+    "A_train_tokens": 13069
+   },
+   {
+    "merges": 675,
+    "A": {
+     "bangla": 145,
+     "code": 141,
+     "english": 247,
+     "total": 535
+    },
+    "B": {
+     "bangla": 153,
+     "code": 124,
+     "english": 256,
+     "total": 534
+    },
+    "A_train_tokens": 12837
+   },
+   {
+    "merges": 700,
+    "A": {
+     "bangla": 143,
+     "code": 141,
+     "english": 246,
+     "total": 532
+    },
+    "B": {
+     "bangla": 148,
+     "code": 124,
+     "english": 255,
+     "total": 528
+    },
+    "A_train_tokens": 12634
+   },
+   {
+    "merges": 725,
+    "A": {
+     "bangla": 142,
+     "code": 141,
+     "english": 244,
+     "total": 529
+    },
+    "B": {
+     "bangla": 148,
+     "code": 124,
+     "english": 254,
+     "total": 527
+    },
+    "A_train_tokens": 12434
+   },
+   {
+    "merges": 750,
+    "A": {
+     "bangla": 141,
+     "code": 141,
+     "english": 238,
+     "total": 522
+    },
+    "B": {
+     "bangla": 147,
+     "code": 124,
+     "english": 246,
+     "total": 518
+    },
+    "A_train_tokens": 12257
+   },
+   {
+    "merges": 775,
+    "A": {
+     "bangla": 141,
+     "code": 141,
+     "english": 234,
+     "total": 518
+    },
+    "B": {
+     "bangla": 147,
+     "code": 124,
+     "english": 246,
+     "total": 518
+    },
+    "A_train_tokens": 12082
+   },
+   {
+    "merges": 800,
+    "A": {
+     "bangla": 140,
+     "code": 141,
+     "english": 233,
+     "total": 516
+    },
+    "B": {
+     "bangla": 147,
+     "code": 124,
+     "english": 246,
+     "total": 518
+    },
+    "A_train_tokens": 11924
+   },
+   {
+    "merges": 825,
+    "A": {
+     "bangla": 137,
+     "code": 140,
+     "english": 232,
+     "total": 511
+    },
+    "B": {
+     "bangla": 147,
+     "code": 123,
+     "english": 244,
+     "total": 515
+    },
+    "A_train_tokens": 11779
+   },
+   {
+    "merges": 850,
+    "A": {
+     "bangla": 136,
+     "code": 135,
+     "english": 227,
+     "total": 500
+    },
+    "B": {
+     "bangla": 145,
+     "code": 123,
+     "english": 243,
+     "total": 512
+    },
+    "A_train_tokens": 11660
+   },
+   {
+    "merges": 875,
+    "A": {
+     "bangla": 135,
+     "code": 135,
+     "english": 224,
+     "total": 496
+    },
+    "B": {
+     "bangla": 145,
+     "code": 123,
+     "english": 243,
+     "total": 512
+    },
+    "A_train_tokens": 11560
+   },
+   {
+    "merges": 900,
+    "A": {
+     "bangla": 131,
+     "code": 135,
+     "english": 224,
+     "total": 492
+    },
+    "B": {
+     "bangla": 145,
+     "code": 123,
+     "english": 243,
+     "total": 512
+    },
+    "A_train_tokens": 11460
+   },
+   {
+    "merges": 925,
+    "A": {
+     "bangla": 130,
+     "code": 130,
+     "english": 224,
+     "total": 486
+    },
+    "B": {
+     "bangla": 143,
+     "code": 120,
+     "english": 240,
+     "total": 504
+    },
+    "A_train_tokens": 11367
+   },
+   {
+    "merges": 950,
+    "A": {
+     "bangla": 129,
+     "code": 130,
+     "english": 223,
+     "total": 484
+    },
+    "B": {
+     "bangla": 143,
+     "code": 120,
+     "english": 239,
+     "total": 503
+    },
+    "A_train_tokens": 11292
+   },
+   {
+    "merges": 975,
+    "A": {
+     "bangla": 126,
+     "code": 130,
+     "english": 223,
+     "total": 481
+    },
+    "B": {
+     "bangla": 141,
+     "code": 118,
+     "english": 239,
+     "total": 499
+    },
+    "A_train_tokens": 11217
+   },
+   {
+    "merges": 1000,
+    "A": {
+     "bangla": 126,
+     "code": 130,
+     "english": 223,
+     "total": 481
+    },
+    "B": {
+     "bangla": 140,
+     "code": 118,
+     "english": 231,
+     "total": 490
+    },
+    "A_train_tokens": 11142
+   }
+  ]
+ },
+ "bootstrap": {
+  "reps": 1000,
+  "seed": 20261107,
+  "units": {
+   "bangla": 5,
+   "code": 10,
+   "english": 5
+  },
+  "note": "units encoded one by one, so totals are unit sums, close to but not equal to whole-text totals",
+  "A_unit_sum": {
+   "point": 546,
+   "ci95": [
+    486,
+    607
+   ]
+  },
+  "B_unit_sum": {
+   "point": 565,
+   "ci95": [
+    507,
+    628
+   ]
+  },
+  "C_unit_sum": {
+   "point": 740,
+   "ci95": [
+    679,
+    807
+   ]
+  },
+  "A_minus_B_tokens": {
+   "point": -19,
+   "ci95": [
+    -38,
+    0
+   ]
+  },
+  "C_minus_A_tokens": {
+   "point": 194,
+   "ci95": [
+    171,
+    217
+   ]
+  },
+  "A_minus_B_percent_of_A": {
+   "point": -3.47985347985348,
+   "ci95": [
+    -7.364341085271318,
+    0.0
+   ]
+  },
+  "C_to_A_cut_percent_of_C": {
+   "point": 26.216216216216218,
+   "ci95": [
+    23.056300268096514,
+    29.745042492917847
+   ]
+  }
+ },
+ "factorial": {
+  "pretrain_preencode": {
+   "heldout": {
+    "bangla": 159,
+    "code": 141,
+    "english": 253,
+    "total": 555
+   },
+   "encode_wall": {
+    "median_ms": 0.6666756235063076,
+    "q1_ms": 0.6603570654988289,
+    "q3_ms": 0.6764852441847324,
+    "repeats": 15
+   }
+  },
+  "pretrain_seqencode": {
+   "heldout": {
+    "bangla": 159,
+    "code": 141,
+    "english": 253,
+    "total": 555
+   },
+   "encode_wall": {
+    "median_ms": 14.538059011101723,
+    "q1_ms": 14.517881907522678,
+    "q3_ms": 14.542634598910809,
+    "repeats": 15
+   }
+  },
+  "seqtrain_preencode": {
+   "heldout": {
+    "bangla": 204,
+    "code": 161,
+    "english": 287,
+    "total": 654
+   },
+   "encode_wall": {
+    "median_ms": 0.5548680201172829,
+    "q1_ms": 0.5478276871144772,
+    "q3_ms": 0.5632839165627956,
+    "repeats": 15
+   }
+  },
+  "seqtrain_seqencode": {
+   "heldout": {
+    "bangla": 160,
+    "code": 130,
+    "english": 261,
+    "total": 552
+   },
+   "encode_wall": {
+    "median_ms": 16.359942965209484,
+    "q1_ms": 16.34768722578883,
+    "q3_ms": 16.397176310420036,
+    "repeats": 15
+   }
+  }
+ },
+ "scaling": [
+  {
+   "copies": 1,
+   "bytes": 1332,
+   "A": {
+    "median_ms": 0.6905170157551765,
+    "q1_ms": 0.6695569027215242,
+    "q3_ms": 0.7073809392750263,
+    "repeats": 9
+   },
+   "B": {
+    "median_ms": 16.379158943891525,
+    "q1_ms": 16.35952782817185,
+    "q3_ms": 16.4041044190526,
+    "repeats": 9
+   }
+  },
+  {
+   "copies": 2,
+   "bytes": 2665,
+   "A": {
+    "median_ms": 1.3305703178048134,
+    "q1_ms": 1.3218654785305262,
+    "q3_ms": 1.3563300017267466,
+    "repeats": 9
+   },
+   "B": {
+    "median_ms": 32.785856164991856,
+    "q1_ms": 32.74938277900219,
+    "q3_ms": 32.81217650510371,
+    "repeats": 9
+   }
+  },
+  {
+   "copies": 4,
+   "bytes": 5331,
+   "A": {
+    "median_ms": 2.62646796181798,
+    "q1_ms": 2.619042992591858,
+    "q3_ms": 2.647643443197012,
+    "repeats": 9
+   },
+   "B": {
+    "median_ms": 65.25462167337537,
+    "q1_ms": 65.19753346219659,
+    "q3_ms": 65.31861424446106,
+    "repeats": 9
+   }
+  },
+  {
+   "copies": 8,
+   "bytes": 10663,
+   "A": {
+    "median_ms": 5.232582800090313,
+    "q1_ms": 5.208277842029929,
+    "q3_ms": 5.297990515828133,
+    "repeats": 9
+   },
+   "B": {
+    "median_ms": 129.6113170683384,
+    "q1_ms": 129.47494722902775,
+    "q3_ms": 129.8178134020418,
+    "repeats": 9
+   }
+  }
+ ],
+ "mix_ablation": {
+  "merges": 500,
+  "rows": {
+   "full": {
+    "bangla": 159,
+    "code": 141,
+    "english": 253,
+    "total": 555
+   },
+   "without_english": {
+    "bangla": 137,
+    "code": 148,
+    "english": 359,
+    "total": 646
+   },
+   "without_bangla": {
+    "bangla": 613,
+    "code": 141,
+    "english": 234,
+    "total": 990
+   },
+   "without_code": {
+    "bangla": 152,
+    "code": 200,
+    "english": 259,
+    "total": 613
+   }
+  }
+ }
+}
