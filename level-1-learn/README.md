@@ -77,7 +77,7 @@ small, repetitive teaching corpus, where the same Bangla phrases
 repeat often enough for their byte sequences to merge early. It is
 not a general claim about Bangla tokenization in production models.
 The production question (how tokenizer choice changes cost and quality
-per language, on real text) is the Deep level study in SPEC.md.
+per language, on real text) is the Deep level study in PROPOSAL.md.
 
 ## Limits, stated plainly
 

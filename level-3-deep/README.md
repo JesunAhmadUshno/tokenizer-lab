@@ -4,9 +4,9 @@ Status: DONE 2026-11-04 (ROADMAP-V3-BATCH, Sprint 1), as a COMPRESSED
 Deep under the December Compression Protocol. Compressed means: the
 single hardest capability in the SPEC Deep scope was built, tested,
 and benchmarked in full, and the rest of the v2 Deep scope is named
-as the v1.1 backlog in ROADMAP.md at the repo root. It is not the
+as the v1.1 backlog in REPORT.md at the repo root, section Future work. It is not the
 full v2 Deep scope, and this README does not claim it is.
-Spec for this level: DEEP-SPEC.md in this folder.
+Spec for this level: PROPOSAL.md at the repo root, section "Deep study design" (moved from level-3-deep/DEEP-SPEC.md on 2026-11-08).
 
 ## What was built
 
@@ -140,7 +140,7 @@ From the actual Deep runs and tests:
 ## Limits, stated plainly
 
 - Compressed Deep, by the protocol named above. The rest of the
-  v2 Deep scope is ROADMAP.md (natural corpus at scale,
+  v2 Deep scope is in REPORT.md, Future work (natural corpus at scale,
   normalization and digit splitting, learned downstream quality
   with a real model, binary save format, faster encoding).
 - The held-out set is 1,332 bytes and hand authored. It is large

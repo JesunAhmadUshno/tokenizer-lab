@@ -6,7 +6,7 @@ import rigorR from '../../level-3-deep/results_rigor.json';
 import heldout from '../../level-3-deep/heldout.json';
 import buildRaw from '../../level-2-build/corpus.txt?raw';
 import learnRaw from '../../level-1-learn/corpus.txt?raw';
-import roadmapRaw from '../../ROADMAP.md?raw';
+import reportRaw from '../../REPORT.md?raw';
 import { loadSegments, trainPre, trainSeq, trainLearn, segmentMetrics, heldoutTokens, crossesBoundary, byteLen } from './bpe.js';
 
 const REPO = 'https://github.com/JesunAhmadUshno/tokenizer-lab';
@@ -18,7 +18,9 @@ const pct = (x, d = 1) => `${(x * 100).toFixed(d)}%`;
 // Test count, counted from the test files at build time.
 const testFiles = import.meta.glob('../../tests/test_*.py', { query: '?raw', import: 'default', eager: true });
 const TEST_COUNT = Object.values(testFiles).reduce((s, src) => s + (src.match(/^\s+def test_/gm) || []).length, 0);
-const BACKLOG = [...roadmapRaw.matchAll(/^(\d+)\. ([^:]+):/gm)].map((m) => m[2]);
+// The backlog is the numbered list under REPORT.md's "## Future work" heading.
+const futureWork = (reportRaw.split(/^## Future work\s*$/m)[1] || '').split(/^## /m)[0];
+const BACKLOG = [...futureWork.matchAll(/^(\d+)\. ([^:]+):/gm)].map((m) => m[2]);
 
 const CORPORA = {
   build: { label: 'Build corpus', file: 'level-2-build/corpus.txt', ...loadSegments(buildRaw) },
@@ -61,7 +63,7 @@ function MenuBar() {
       <a className="m" href={blob('level-1-learn/README.md')}>Learn</a>
       <a className="m" href={blob('level-2-build/README.md')}>Build</a>
       <a className="m" href={blob('level-3-deep/README.md')}>Deep</a>
-      <a className="m" href={blob('docs/research-review.md')}>Review</a>
+      <a className="m" href={blob('REPORT.md')}>Report</a>
       <span className="spacer" />
       <span className="status"><i /> Parity-checked against Python</span>
       <a href={REPO}>GitHub ↗</a>
@@ -600,7 +602,7 @@ function Limits() {
     'Words are split on whitespace and no Unicode normalization is applied, which treats code and Bangla punctuation unevenly.',
   ];
   return (
-    <section id="limits" className="card window reveal" data-title="ROADMAP.md — limits and v1.1 backlog">
+    <section id="limits" className="card window reveal" data-title="REPORT.md — limits and future work">
       <p className="eyebrow">Honest limits</p>
       <h2>What this study cannot tell you yet.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -609,9 +611,9 @@ function Limits() {
           <ul className="limits">{limits.map((l) => <li key={l}>{l}</li>)}</ul>
         </div>
         <div>
-          <h3 style={{ marginBottom: 10 }}>v1.1 backlog, from <a href={blob('ROADMAP.md')}>ROADMAP.md</a></h3>
+          <h3 style={{ marginBottom: 10 }}>Future work, from <a href={blob('REPORT.md')}>REPORT.md</a></h3>
           <ol className="steps">{BACKLOG.map((b, i) => <li key={b}><span className="n">{i + 1}</span><div><b>{b}</b></div></li>)}</ol>
-          <p className="hint">The full grading against a research rubric, with the compute or data each gap needs, is in <a href={blob('docs/research-review.md')}>docs/research-review.md</a>.</p>
+          <p className="hint">Every open gap, with the compute or data it needs, is in <a href={blob('REPORT.md')}>REPORT.md</a>.</p>
         </div>
       </div>
     </section>
@@ -625,7 +627,7 @@ function Reproduce() {
     ['level-3-deep/README.md', 'Level 3, Deep', 'Held-out study and failure modes'],
     ['level-3-deep/results_rigor.json', 'Rigor results', 'Sweep, bootstrap, 2×2, scaling, mix'],
     ['site/src/bpe.check.mjs', 'Parity gate', 'JS port checked against Python'],
-    ['docs/research-review.md', 'Research review', 'Rubric grades and open gaps'],
+    ['REPORT.md', 'Report', 'Results, threats and open gaps'],
   ];
   return (
     <section id="reproduce" className="card window reveal" data-title="Terminal — reproduce">

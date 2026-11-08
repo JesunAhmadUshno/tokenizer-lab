@@ -2,11 +2,11 @@ name: Pages
 
 # Builds the live dashboard in site/ from the committed corpora and results_*.json and publishes
 # it to GitHub Pages. `npm run build` runs the JS-vs-Python parity gate first, so a drifted port
-# never deploys. docs/index.md stays in the repo; Pages must use the "GitHub Actions" source.
+# never deploys. Pages must use the "GitHub Actions" source.
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'level-1-learn/**', 'level-2-build/**', 'level-3-deep/**', 'tests/**', 'ROADMAP.md', '.github/workflows/pages.yml']
+    paths: ['site/**', 'level-1-learn/**', 'level-2-build/**', 'level-3-deep/**', 'tests/**', 'REPORT.md', 'README.md', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:

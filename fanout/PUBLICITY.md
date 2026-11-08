@@ -1,17 +1,34 @@
 # PUBLICITY: tokenizer-lab (P02)
 
-Publicity log under the documentation and publishing standard,
-Section 7. Every finished level produces its written fan-out set,
-each piece graded on the 1,000-point publicity rubric (accuracy 300,
-research 200, gap fit 200, clarity 150, reach format 150), ship line
-900. Drafts are prepared by the loop. Actual social posting follows
-the standing platform rules and gates. The loop itself never posts
-to social.
+Publicity log for the written fan-out set. Drafts were prepared by
+the loop; actual social posting follows the standing platform rules
+and gates, and the loop never posts to social. Grades for these
+pieces are kept internally, outside the public repo.
 
-Fan-out set date: 2026-11-04. Project state: v1.0, Learn, Build, and
-compressed Deep done 2026-11-04, 36 tests passing. Level grades in
-the batch ledger: Learn 8,700 of 10,000, Build 8,200 of 10,000,
-Deep 8,200 of 10,000.
+Fan-out set date: 2026-11-04. Project state at the time: Learn,
+Build, and compressed Deep done 2026-11-04, 36 tests passing.
+
+## The fan-out set (moved from README.md, 2026-11-08)
+
+- fanout/blog-post.md: the build story and the measured results,
+  with the main results claim and the honest limits.
+- fanout/tutorial.md: course module P02-tokenizer-lab. Every
+  command in it was run and verified at v1.0 (three runners, three
+  per-level test discoveries, full suite at 36 tests).
+- fanout/website-page.md: project page copy only. Nothing was
+  published to any website by this set.
+- fanout/linkedin-post.md: LinkedIn draft, marked DRAFT NOT
+  POSTED, link carried as the first-comment line per the platform
+  rule.
+- fanout/paper-candidate.md: brief for the tokenizer choice cost
+  and quality study on held-out text. Submission is Jesun's tap;
+  nothing submitted, no venue contacted.
+- fanout/release-notes.md: draft notes for the existing releases
+  v0.1, v0.5, and v1.0 only. No new release was created.
+
+These drafts are dated 2026-11-04. They refer to the file names of
+that time: SPEC.md, NOVELTY.md, DOSSIER.md and level-3-deep/DEEP-SPEC.md
+are now in PROPOSAL.md; ROADMAP.md is now REPORT.md, section Future work.
 
 Jev claim_check on the blog main results claim, 2026-11-04: model
 jev-1.13.0, question id supported (noul), noul 0.87, route CLEAR
@@ -39,54 +56,6 @@ in the owning goal workspace.
 | Book chapter | Draft angle in fanout/blog-post.md and SPEC.md ("Words Into Numbers"). Held: chapter draft follows the finished project set; not a published chapter. |
 | Paper candidate | Draft brief in fanout/paper-candidate.md (tokenizer choice cost and quality study on held-out text). Submission is Jesun's tap. Nothing submitted, no venue contacted. Tracker finding on 2026-11-04: no P02 row exists in the publications pipeline tracker; adding one is a coordinator step outside this cycle. |
 
-## Publicity grades (1,000-point rubric, ship line 900)
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach format /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| fanout/blog-post.md | 295 | 190 | 195 | 145 | 140 | 965 |
-| fanout/tutorial.md | 300 | 185 | 195 | 148 | 142 | 970 |
-| fanout/website-page.md | 295 | 180 | 190 | 148 | 145 | 958 |
-| fanout/linkedin-post.md | 290 | 175 | 190 | 145 | 140 | 940 |
-| fanout/paper-candidate.md | 295 | 195 | 195 | 140 | 130 | 955 |
-| fanout/release-notes.md | 298 | 185 | 185 | 145 | 135 | 948 |
-
-All six pieces are at or above the 900 ship line. No piece was
-shipped ungraded. Mean of the six piece grades: 956 of 1,000,
-which is 9,560 of 10,000 on the fan-out scale.
-
-## Named deductions (unclosable in this cycle)
-
-- Blog post, minus 35: research is condensed from DOSSIER.md,
-  whose past section is brief (minus 10 research); the synthetic
-  Build corpus and the 1,332-byte held-out set limit how far the
-  results travel, stated in the piece (minus 10 reach, minus 5
-  accuracy for reader interpretation risk on the Bangla ratios,
-  minus 5 gap fit, minus 5 clarity).
-- Tutorial, minus 30: research framing is thinner than the blog by
-  design, because the module teaches runs rather than the field
-  (minus 15 research); no worked example beyond the shipped
-  corpora and held-out set (minus 5 gap fit, minus 2 clarity,
-  minus 8 reach).
-- Website page, minus 42: condensed research (minus 20), condensed
-  gap framing (minus 10), and the page is copy only, not a live
-  page (minus 5 reach, minus 5 accuracy, minus 2 clarity).
-- LinkedIn post, minus 60: short form compresses the research and
-  the failure mode detail (minus 25 research, minus 10 accuracy,
-  minus 10 gap fit, minus 5 clarity, minus 10 reach, because the
-  post is a held draft and carries no live link in the body by
-  rule).
-- Paper candidate, minus 45: this is a brief, not a drafted paper
-  (minus 20 reach, minus 10 clarity); venue is classed, not named
-  (minus 5 research, minus 5 gap fit, minus 5 accuracy for the
-  synthetic training corpus and small held-out evidence base the
-  paper must carry).
-- Release notes, minus 52: notes summarise releases that already
-  exist, so research and gap framing are summary grade (minus 15
-  research, minus 15 gap fit); format is repo-bound (minus 15
-  reach, minus 2 accuracy, minus 5 clarity).
-
-## Actions polish pack (2026-11-05)
-
 Applied through a pull request on 2026-11-05, following the Actions
 polish pack standard. The pack adds: CI on a Python 3.11 and 3.12
 matrix with a ruff lint step (all pre-existing P02 CI steps
@@ -113,19 +82,6 @@ fact so Dependabot pip has a manifest to watch.
 | PyPI publishing | Held: needs a PyPI token, a new credential. Jesun's tap only. Not set up. |
 | Social channels (LinkedIn, X, Facebook, Instagram, Threads) | Held: no posts made. The loop never posts to social; Threads waits for Jesun's tap per post under the standing gates. |
 
-Publicity grade for this polish pack log piece, on the 1,000
-point rubric (accuracy 300, research 200, gap fit 200, clarity
-150, reach format 150), ship line 900:
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| PUBLICITY.md polish pack section (2026-11-05) | 295 | 180 | 195 | 145 | 100 | 915 |
-
-At or above the 900 ship line. Named deductions: research minus
-20, because the pack is a standard applied across repos and this
-section records its application rather than new research; reach
-minus 50, because the docs page is copy in this pull request with
-no live Pages claim yet, PyPI publishing is held, and no social
-channel carries this piece by the standing gates; accuracy minus
-5, gap fit minus 5, and clarity minus 5 for summary compression
-of the full pack standard, which lives in the batch files.
+Note, 2026-11-08: docs/index.md was removed in the move to the portfolio
+standard v2. GitHub Pages now builds the live dashboard from site/ (see
+.github/workflows/pages.yml); the summary it carried is in README.md and REPORT.md.

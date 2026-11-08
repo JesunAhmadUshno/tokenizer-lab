@@ -139,9 +139,6 @@ What the numbers say, stated plainly:
 
 Tests: 11 Deep tests, 36 in total with Learn and Build.
 
-Grades already recorded for this project in the batch ledger:
-Learn 8,700 of 10,000, Build 8,200 of 10,000, Deep 8,200 of 10,000.
-
 ## Honest limits
 
 - The Learn corpus is 2,011 bytes and hand-written. The Build

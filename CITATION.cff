@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "tokenizer-lab: a byte-level BPE tokenizer built from zero, with a held-out study of merge count and pre-tokenization on English, Bangla and code"
+authors:
+  - family-names: Ushno
+    given-names: Jesun Ahmad
+repository-code: "https://github.com/JesunAhmadUshno/tokenizer-lab"
+license: Apache-2.0
+date-released: 2026-11-04
+version: "1.0"
