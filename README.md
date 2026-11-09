@@ -1,76 +1,71 @@
 # tokenizer-lab
 
-A byte-pair encoding tokenizer built from zero and trained on English, Bangla, and code.
+**Question.** How much do merge count and pre-tokenization change the
+token cost of held-out English, Bangla and code text for a byte-level
+BPE tokenizer built from zero?
 
-Live dashboard: https://jesunahmadushno.github.io/tokenizer-lab/ (train the tokenizer in your
-browser on the committed corpus, tokenize your own text, and explore the recorded held-out
-study; built from site/, and the build fails unless the JavaScript port reproduces every
-recorded Python token count).
+**Headline.** On a 1,332-byte held-out set of English, Bangla and code, cutting the tokenizer from 500 to 100 merges costs 194 more tokens (95% paired-bootstrap interval 171 to 217) while switching pre-tokenization off changes the count by only 19 (interval 0 to 38), so merge count, not pre-tokenization, is the cost lever; trained on a 61,885-byte synthetic corpus, with no production tokenizer measured as a baseline.
 
-Status: DEEP DONE 2026-11-04 (ROADMAP-V3-BATCH, Sprint 1), as a
-COMPRESSED Deep under the December Compression Protocol.
-Level 1 code runs with 11 passing unit tests and one measured training
-run on a 2,011-byte mixed English, Bangla, and code corpus. Level 2
-adds pre-tokenization, five reserved special tokens, weighted pair
-counting, and JSON save and load, with 14 passing unit tests and one
-measured run on a 61,885-byte synthetic mixed corpus at up to 1,000
-merges. Level 3, compressed Deep, is the tokenizer choice cost and
-quality study on held-out text: three variants (pre-tokenization on
-at 500 merges, pre-tokenization off at 500 merges, pre-tokenization
-on at 100 merges) trained on the Build corpus and measured per
-segment on a 1,332-byte authored held-out set that the training
-corpus does not repeat, with 11 Deep unit tests (36 total passing).
-Release v1.0. The rest of the v2 Deep scope is the v1.1 backlog in
-ROADMAP.md. The Wave 0 scaffold claim is superseded
-by this line. Project: P02. Fleet node: BlackBoxV3. Wave: Wave 1.
+**Field.** ML and AI research. **Job family.** ML engineering
+(NLP foundations: tokenization).
 
-## Start here
+**Verdict.** Functional, not pre-registered. Tests pass in CI on
+Python 3.11 and 3.12, one command reproduces every results file from
+the committed corpora, and the full study has run end to end with its
+evidence in the repo. No plan was locked before the results
+(docs/decisions/0003), and the baselines a reviewer would expect are
+missing, so the repo is capped at Functional.
 
-1. Read SPEC.md for scope and acceptance criteria.
-2. Read DOSSIER.md for the past, present, and future of this problem (v1).
-3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
-4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep.
+Live dashboard: https://jesunahmadushno.github.io/tokenizer-lab/ (train
+the tokenizer in your browser on the committed corpus, tokenize your
+own text, and explore the recorded held-out study; the build fails
+unless the JavaScript port reproduces every recorded Python token count).
 
-## Level map
+## Reproduce
 
-- Level 1, Learn: the core idea, built small and clean, with a teaching path.
-- Level 2, Build: a real working system other people can run.
-- Level 3, Deep: benchmarks, optimization, evaluation, hard cases.
+```text
+python3 -m unittest discover -s tests -p "test_*.py" -v
+python3 scripts/check_results.py
+```
 
-## Benchmarks
+The second command reruns all four runners (level-1-learn/train_bpe.py,
+level-2-build/run_build.py, level-3-deep/run_deep.py,
+level-3-deep/run_rigor.py) and checks that every results file matches
+the committed one, timings excepted. Python 3 standard library only,
+CPU, under a minute. The dashboard: `cd site && npm ci && npm run build`.
 
-| Test | Result |
+## Lifecycle
+
+- Question: DONE 2026-11-04
+- Proposal: NOT PRE-REGISTERED 2026-11-08
+- Baseline: DONE 2026-11-04
+- Build: DONE 2026-11-04
+- Evaluate: PARTIAL 2026-11-07
+- Report: DONE 2026-11-08
+- Review: OPEN
+- Release: OPEN
+
+## Layout
+
+| Path | What it holds |
 | --- | --- |
-| Level 1 BPE training run, 2,011-byte mixed corpus, byte-level BPE from zero (method: level-1-learn/README.md), 2026-11-04 | Trained with 200 merges, the tokenizer encodes the full corpus in 643 tokens against 2,011 bytes at zero merges. Per segment at 200 merges: english 624 bytes in 292 tokens (2.137 bytes per token), bangla 1,004 bytes in 208 tokens (4.827), code 381 bytes in 143 tokens (2.664). The first Bangla sentence encodes in 19 tokens and round trips exactly. |
-| Level 2 BPE run, 61,885-byte synthetic mixed corpus, pre-tokenization and special tokens on (method: level-2-build/README.md), 2026-11-04 | Trained with 1,000 merges, the tokenizer encodes the full corpus in 11,142 tokens against 61,885 bytes at zero merges. Per segment at 1,000 merges: english 21,792 bytes in 5,175 tokens (4.211 bytes per token), bangla 24,801 bytes in 2,696 tokens (9.199), code 15,290 bytes in 3,269 tokens (4.677). The high Bangla ratio is a template repetition effect of the synthetic corpus (897 unique pre-tokens), stated in the level README. Save and load round trip verified in the same run. |
-| Level 3 Deep study, three variants trained on the 61,885-byte Build corpus, measured on a 1,332-byte authored held-out set disjoint from the training corpus (method: level-3-deep/README.md), 2026-11-04 | Held-out totals: variant A (pre-tokenization on, 500 merges, vocab 761) 555 tokens at 2.400 bytes per token; variant B (pre-tokenization off, 500 merges, vocab 761) 552 tokens at 2.413, with encode wall about 8 times variant A; variant C (pre-tokenization on, 100 merges, vocab 361) 749 tokens at 1.778; byte baseline 1,332 tokens at 1.000. All variants round trip all held-out segments exactly. Merge count is the big held-out cost lever (C to A cuts tokens 25.9 percent); pre-tokenization changes encode speed and token shape, not count. |
+| PROPOSAL.md | Question, post-hoc hypotheses H1 to H4, study design, scope, prior work (not locked) |
+| REPORT.md | Background, method, results, hypotheses scored, misses, threats, gaps, future work |
+| level-1-learn/ | Byte-level BPE from zero (bpe.py), its corpus, runner and results_learn.json; README is the teaching path |
+| level-2-build/ | BuildTokenizer (tokenizer.py), the 61,885-byte corpus, runner and results_build.json |
+| level-3-deep/ | Study code (study.py, rigor.py), held-out set, runners, results_deep.json and results_rigor.json |
+| scripts/check_results.py | Regenerates every results file and compares it with the committed copy |
+| tests/ | Unit tests for every level and the layout test, run in CI |
+| docs/decisions/ | Records of hard-to-reverse choices |
+| site/ | The live dashboard, built from the corpora and results files |
+| fanout/ | Dated 2026-11-04 drafts (blog, tutorial, paper brief, release notes) and the publicity log |
+| CHANGELOG.md, CITATION.cff, SECURITY.md, LICENSE | Project records |
 
-Rigor additions (2026-11-07, level-3-deep/results_rigor.json, method in level-3-deep/README.md): a dense held-out sweep every 25 merges, paired bootstrap intervals (C minus A 194 tokens, 95 percent interval 171 to 217; A minus B -19, interval -38 to 0), a 2x2 that separates merge learning from encoding, an encode-length scaling run, and a training-mix ablation. Research grading and open gaps: docs/research-review.md.
-
-## Fan-out
-
-Written fan-out set for v1.0, in fanout/ (publicity log and grades
-in PUBLICITY.md at the repo root):
-
-- fanout/blog-post.md: the build story and the measured results,
-  with the main results claim and the honest limits.
-- fanout/tutorial.md: course module P02-tokenizer-lab. Every
-  command in it was run and verified at v1.0 (three runners, three
-  per-level test discoveries, full suite at 36 tests).
-- fanout/website-page.md: project page copy only. Nothing was
-  published to any website by this set.
-- fanout/linkedin-post.md: LinkedIn draft, marked DRAFT NOT
-  POSTED, link carried as the first-comment line per the platform
-  rule.
-- fanout/paper-candidate.md: brief for the tokenizer choice cost
-  and quality study on held-out text. Submission is Jesun's tap;
-  nothing submitted, no venue contacted.
-- fanout/release-notes.md: draft notes for the existing releases
-  v0.1, v0.5, and v1.0 only. No new release was created.
-
-## Novelty
-
-PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
+No separate src/, experiments/ or results/ folders: the code, its
+evidence (corpora, held-out set) and its results files live together
+in each level folder, because the tests, the dashboard and its parity
+gate read them there. The results files are regenerated from the
+corpora by one command and checked in CI.
 
 ## License
 
