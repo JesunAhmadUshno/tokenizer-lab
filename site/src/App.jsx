@@ -141,7 +141,7 @@ export default function App() {
     return () => clearTimeout(t);
   }, []);
   return (
-    <div className="wrap">
+    <div className="wrap"><a className="skip" href="#top">Skip to content</a>
       <MenuBar />
       <div className="glow" aria-hidden="true" />
       <Hero />
@@ -156,7 +156,7 @@ export default function App() {
       <Dock />
       <footer>
         Code: Apache-2.0. Recorded numbers are read from <code>level-*/results_*.json</code> at build time. The trainer and playground run the repo’s BPE, ported to JavaScript, on the committed corpus in your browser; the build fails unless that port reproduces every recorded Python token count.
-      </footer>
+      <nav className="support" aria-label="Support this work"><a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a><a href="https://github.com/sponsors/JesunAhmadUshno">Donate</a><a href="https://buymeacoffee.com/jesun">Buy Me a Coffee</a><a href="https://calendly.com/jesunahmadushno/30min">Work with me</a></nav></footer>
     </div>
   );
 }
@@ -165,7 +165,7 @@ function Hero() {
   const a = V.A_pretoken_500.total, b = V.B_nopretoken_500.total, c = V.C_pretoken_100.total, base = V.baseline_bytes.total;
   const lossless = ['A_pretoken_500', 'B_nopretoken_500', 'C_pretoken_100'].every((k) => V[k].all_roundtrip_exact);
   return (
-    <header className="card hero window" id="top" data-title="tokenizer-lab — README.md">
+    <header className="card hero window" id="top" data-title="tokenizer-lab - README.md">
       <div className="head">
         <p className="eyebrow">Byte-pair encoding from scratch · English, Bangla, code</p>
         <span className={`pill ${lossless ? 'good' : 'bad'}`}>● {lossless ? 'All variants lossless' : 'Round trip failed'}</span>
@@ -243,7 +243,7 @@ function Trainer({ run, setRun }) {
   const match = (got, want) => want === undefined ? null : got === want;
   const checks = run ? [match(run.trainTokens, rec.train), match(last.merges === run.merges ? last.heldout.total : undefined, rec.heldout)].filter((x) => x !== null) : [];
   return (
-    <section id="trainer" className="card window reveal" data-title="bpe_trainer.app — live in your browser">
+    <section id="trainer" className="card window reveal" data-title="bpe_trainer.app - live in your browser">
       <div className="head">
         <div>
           <p className="eyebrow">Live · computed in your browser</p>
@@ -324,7 +324,7 @@ function Playground({ run }) {
     return { ids, m, spans: ids.map((i) => ({ i, t: tok.tokenText(i), hex: tok.vocab[i].map((x) => x.toString(16).padStart(2, '0')).join(' ') })) };
   }, [tok, text]);
   return (
-    <section id="playground" className="card window reveal" data-title="encode.py — playground">
+    <section id="playground" className="card window reveal" data-title="encode.py - playground">
       <div className="head">
         <div>
           <p className="eyebrow">Live · uses the tokenizer you just trained</p>
@@ -378,7 +378,7 @@ function HeldOut() {
   const bs = rigorR.bootstrap;
   const mix = rigorR.mix_ablation.rows;
   return (
-    <section id="heldout" className="card window reveal" data-title="results_deep.json — recorded 2026-11-04">
+    <section id="heldout" className="card window reveal" data-title="results_deep.json - recorded 2026-11-04">
       <div className="head">
         <div>
           <p className="eyebrow">Recorded replay · held-out study</p>
@@ -455,7 +455,7 @@ function Sweep({ run }) {
   const r = (k) => rows.find((x) => x.merges === k);
   const saved = (a, b) => r(a).A.total - r(b).A.total;
   return (
-    <section id="sweep" className="card window reveal" data-title="merge_sweep.svg — recorded + live">
+    <section id="sweep" className="card window reveal" data-title="merge_sweep.svg - recorded + live">
       <div className="head">
         <div>
           <p className="eyebrow">Recorded sweep · live overlay</p>
@@ -506,7 +506,7 @@ function Boundary({ bTok }) {
   const xMax = sc[sc.length - 1].bytes, yMax = Math.ceil(sc[sc.length - 1].B.q3_ms / 20) * 20;
   const sx = (x) => pad.l + (x / xMax) * (W - pad.l - pad.r), sy = (y) => pad.t + (1 - y / yMax) * (H - pad.t - pad.b);
   return (
-    <section id="boundary" className="card window reveal" data-title="study.py — NoPreTokenizer">
+    <section id="boundary" className="card window reveal" data-title="study.py - NoPreTokenizer">
       <p className="eyebrow">Live vocabulary · recorded timings</p>
       <h2>Without pre-tokenization, tokens swallow spaces and punctuation.</h2>
       <p className="sub">
@@ -602,7 +602,7 @@ function Limits() {
     'Words are split on whitespace and no Unicode normalization is applied, which treats code and Bangla punctuation unevenly.',
   ];
   return (
-    <section id="limits" className="card window reveal" data-title="REPORT.md — limits and future work">
+    <section id="limits" className="card window reveal" data-title="REPORT.md - limits and future work">
       <p className="eyebrow">Honest limits</p>
       <h2>What this study cannot tell you yet.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -630,7 +630,7 @@ function Reproduce() {
     ['REPORT.md', 'Report', 'Results, threats and open gaps'],
   ];
   return (
-    <section id="reproduce" className="card window reveal" data-title="Terminal — reproduce">
+    <section id="reproduce" className="card window reveal" data-title="Terminal - reproduce">
       <p className="eyebrow">Reproduce it</p>
       <h2>Python standard library only. Every number reruns in seconds.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
